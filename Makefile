@@ -1,8 +1,7 @@
 .DEFAULT_GOAL := build
 .PHONY: build
 
-SHELL := /bin/bash
-PATH := $(shell yarn bin):$(PATH)
+BIN = $(shell yarn bin)
 
 test: test-node test-browser
 .PHONY: test
@@ -12,16 +11,16 @@ test-watch:
 	@exit 1
 
 test-node:
-	jest
+	@${BIN}/jest
 
 test-node-watch:
-	jest --watch
+	@${BIN}/jest --watch
 
 test-browser:
-	karma start --single-run
+	@${BIN}/karma start --single-run
 
 test-browser-watch:
-	karma start
+	@${BIN}/karma start
 
 build:
 	@rm -rf lib
