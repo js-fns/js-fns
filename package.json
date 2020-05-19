@@ -29,7 +29,7 @@
     "prettier": "^1.17.1",
     "puppeteer": "^1.19.0",
     "sinon": "^7.3.2",
-    "typescript": "^3.6.0-beta",
+    "typescript": "3.9",
     "webpack": "^4.37.0"
   },
   "dependencies": {}
