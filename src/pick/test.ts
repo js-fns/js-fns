@@ -13,13 +13,13 @@ describe('pick', function() {
     assert.deepEqual(result, { a: 1, b: 2 })
   })
 
-  it('returns the same object when none of the keys are found', function() {
+  it('returns empty object if none of the keys are found', function() {
     // @ts-expect-error
     const result = pick(obj, ['nope', 'nah'])
     assert.deepEqual(result, {})
   })
 
-  it('does not change orignal array', function() {
+  it('does not change orignal object', function() {
     const result = pick(obj, ['a', 'b'])
     assert.deepEqual(obj, { a: 1, b: 2, c: 3 })
   })
