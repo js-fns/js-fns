@@ -1,6 +1,6 @@
 export { default as chunk } from './chunk/index'
 export { default as cloneDeep } from './cloneDeep/index'
-export { default as compact } from './compact/index'
+export { default as sweep } from './sweep/index'
 export { default as debounce } from './debounce/index'
 export { default as difference } from './difference/index'
 export { default as drop } from './drop/index'
