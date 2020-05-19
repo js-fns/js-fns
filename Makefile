@@ -27,6 +27,7 @@ build:
 	@rm -rf lib
 	@env BABEL_ENV=commonjs ${BIN}/babel src --source-root src --out-dir lib --extensions .ts --out-file-extension .js --ignore "src/**/test.ts"
 	@env BABEL_ENV=esm ${BIN}/babel src --source-root src --out-dir lib --extensions .ts --out-file-extension .mjs --ignore "src/**/test.ts"
+	@${BIN}/tsc
 	@${BIN}/prettier "lib/**/*.*js" --write --loglevel silent
 	@cp {package.json,*.md} lib
 	@rsync --archive --prune-empty-dirs --exclude '*.ts' --relative src/./ lib
