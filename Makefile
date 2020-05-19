@@ -1,6 +1,7 @@
 .DEFAULT_GOAL := build
 .PHONY: build
 
+SHELL := /bin/bash
 BIN = $(shell yarn bin)
 
 test: test-node test-browser
