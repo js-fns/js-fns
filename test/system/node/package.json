@@ -1,0 +1,11 @@
+{
+  "name": "js-fns-system-tests-node",
+  "description": "js-fns system test",
+  "repository": "js-fns/js-fns",
+  "version": "1.0.0",
+  "main": "test.js",
+  "dependencies": {
+    "js-fns": "file:../../../lib"
+  },
+  "license": "MIT"
+}
