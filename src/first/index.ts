@@ -5,7 +5,7 @@
  * @returns The first element of the array
  */
 
-export default function head<ElementType>(
+export default function first<ElementType>(
   arr: ElementType[]
 ): ElementType | undefined {
   return arr[0]
