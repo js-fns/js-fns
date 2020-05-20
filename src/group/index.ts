@@ -1,33 +1,54 @@
-export type Groups<GroupIdType extends number | string, ItemType> = {
-  [key in GroupIdType]: ItemType[]
+export type GroupedElements<GroupIdType extends number | string, ElementType> = {
+  [groupId in GroupIdType]: ElementType[]
 }
 
-export default function group<ItemType, GroupIdType extends string | number>(
-  arr: ItemType[],
-  mapper: (item: ItemType, index: number) => GroupIdType
-): Groups<GroupIdType, ItemType>
+/**
+ * Creates an object where the key is the group id and the value is an array of elements grouped by this id.
+ *
+ * @param array - The array to group elements from
+ * @param mapper - The function that returns the group id
+ * @returns An object where the key is the group id and the value is an array of elements grouped by this id
+ *
+ * @public
+ */
+export default function group<ElementType, GroupIdType extends string | number>(
+  arr: ElementType[],
+  mapper: (element: ElementType, index: number) => GroupIdType
+): GroupedElements<GroupIdType, ElementType>
 
+/**
+ * Creates an object where the key is the group id and the value is an array of elements grouped by this id.
+ *
+ * @param array - The array to group elements from
+ * @param fieldName - The name of the field to use as the id
+ * @returns An object where the key is the group id and the value is an array of elements grouped by this id
+ *
+ * @public
+ */
 export default function group<
-  ItemType extends {},
-  Key extends keyof ItemType,
-  GroupIdType extends ItemType[Key]
+  ElementType extends {},
+  FieldName extends keyof ElementType,
+  GroupIdType extends ElementType[FieldName]
 >(
-  arr: ItemType[],
-  mapper: Key
-): GroupIdType extends number | string ? Groups<GroupIdType, ItemType> : never
+  arr: ElementType[],
+  fieldName: FieldName
+): GroupIdType extends number | string ? GroupedElements<GroupIdType, ElementType> : never
 
-export default function group<ItemType, GroupIdType extends string | number>(
-  arr: ItemType[],
-  mapper: ((item: ItemType, index: number) => GroupIdType) | (string | number)
-): Groups<GroupIdType, ItemType> {
-  return arr.reduce(
-    (acc, item: any, index) => {
+/**
+ * @internal
+ */
+export default function group<ElementType, GroupIdType extends string | number>(
+  array: ElementType[],
+  mapper: ((element: ElementType, index: number) => GroupIdType) | (string | number)
+): GroupedElements<GroupIdType, ElementType> {
+  return array.reduce(
+    (acc, element: any, index) => {
       const groupId =
-        typeof mapper === 'function' ? mapper(item, index) : item[mapper]
+        typeof mapper === 'function' ? mapper(element, index) : element[mapper]
       acc[groupId] = acc[groupId] || []
-      acc[groupId].push(item)
+      acc[groupId].push(element)
       return acc
     },
-    {} as { [key: string]: ItemType[] }
-  ) as Groups<GroupIdType, ItemType>
+    {} as { [groupId: string]: ElementType[] }
+  ) as GroupedElements<GroupIdType, ElementType>
 }

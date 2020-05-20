@@ -1,18 +1,27 @@
-type Debounced<Fn extends (...args: any[]) => any> = Fn extends ((
+type DebouncedFunction<Fn extends (...args: any[]) => any> = Fn extends ((
   ...args: infer Args
 ) => any)
   ? ((...args: Args) => void)
   : never
 
-export default function debounce<Fn extends (...args: any[]) => any>(
-  fn: Fn,
+/**
+ * Creates a function that will execute after the given timeout after the last call.
+ *
+ * @param fn - The function to execute
+ * @param wait - The timeout
+ * @returns A function based on the provided function that will execute after the given timeout after the last call
+ *
+ * @public
+ */
+export default function debounce<InputFunction extends (...args: any[]) => any>(
+  fn: InputFunction,
   wait: number
-): Debounced<Fn> {
+): DebouncedFunction<InputFunction> {
   let timeout: ReturnType<typeof setTimeout>
   return ((...args: any[]) => {
     clearTimeout(timeout)
     timeout = setTimeout(() => {
       fn(...args)
     }, wait)
-  }) as Debounced<Fn>
+  }) as DebouncedFunction<InputFunction>
 }
