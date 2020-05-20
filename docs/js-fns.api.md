@@ -22,6 +22,9 @@ export function difference<ElementType>(inputArray: Array<ElementType>, arrayToS
 export function drop<ElementType>(array: Array<ElementType>, howMany: number): Array<ElementType>;
 
 // @public
+export function first<ElementType>(arr: ElementType[]): ElementType | undefined;
+
+// @public
 export function flatten<ElementType>(array: Array<ElementType | ElementType[]>): ElementType[];
 
 // Warning: (ae-forgotten-export) The symbol "GroupedElements" needs to be exported by the entry point index.d.ts
