@@ -1,7 +1,16 @@
-export default function chunk<T>(
-  array: Array<T>,
+/**
+ * Groups the array elements into chunks of the given size.
+ *
+ * @param array - The array to generate chunks from
+ * @param size - The size of a chunk
+ * @returns An array of chunks of the given size
+ *
+ * @public
+ */
+export default function chunk<ElementType>(
+  array: ElementType[],
   size: number
-): Array<Array<T>> {
+): ElementType[][] {
   const maxChunks = Math.ceil(array.length / size)
   const newArray = []
   for (let index = 0; index < maxChunks; index++) {

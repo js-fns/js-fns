@@ -1,3 +1,12 @@
+/**
+ * Picks the given fields from the provided object
+ *
+ * @param object - The object to pick fields from
+ * @param keys - The array of field names to pick
+ * @returns An object with the given fields picked
+ *
+ * @public
+ */
 export default function pick<
   ObjectType extends {},
   Key extends keyof ObjectType,

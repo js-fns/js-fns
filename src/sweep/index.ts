@@ -1,6 +1,14 @@
+/**
+ * Removes null and undefined elements from the given array.
+ *
+ * @param array - The array to remove elements from
+ * @returns An array without elements equal null or undefined
+ *
+ * @public
+ */
 export default function sweep<
-  ItemType,
-  ReturnType extends Array<Exclude<ItemType, null | undefined>>
->(array: Array<ItemType>): ReturnType {
+  ElementType,
+  ReturnType extends Array<Exclude<ElementType, null | undefined>>
+>(array: Array<ElementType>): ReturnType {
   return array.filter((item) => item != null) as ReturnType
 }
