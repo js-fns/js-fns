@@ -12,15 +12,13 @@ module.exports = (config) => {
 
     frameworks: ['jasmine'],
 
-    logLevel: config.LOG_DEBUG,
-
     browsers: crossBrowser ? ['ie11'] : ['ChromeHeadless'],
 
     reporters: ['dots'].concat(crossBrowser ? 'saucelabs' : []),
 
     // Sauce Connect takes time to download,
     // so increase capture timeout to give it time
-    captureTimeout: crossBrowser ? 300000 : 60000,
+    captureTimeout: crossBrowser ? 3000000 : 60000,
 
     webpack: {
       devtool: 'inline-source-map',
