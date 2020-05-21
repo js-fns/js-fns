@@ -29,10 +29,10 @@ export default function uniq<ElementType>(
  *
  * @public
  */
-export default function uniq<ElementType extends {}, FieldNameType extends keyof ElementType>(
-  array: ElementType[],
-  fieldName: FieldNameType
-): ElementType[]
+export default function uniq<
+  ElementType extends {},
+  FieldNameType extends keyof ElementType
+>(array: ElementType[], fieldName: FieldNameType): ElementType[]
 
 /**
  * @internal
@@ -43,9 +43,14 @@ export default function uniq<ElementType>(
 ): ElementType[] {
   const map = new Map()
   const result: ElementType[] = []
-  for (const element of array) {
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i]
     const key =
-      typeof mapper === 'function' ? mapper(element) : mapper ? element[mapper] : element
+      typeof mapper === 'function'
+        ? mapper(element)
+        : mapper
+        ? element[mapper]
+        : element
     if (!map.has(key)) {
       map.set(key, true)
       result.push(element)
