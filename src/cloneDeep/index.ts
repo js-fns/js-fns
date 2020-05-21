@@ -13,7 +13,7 @@ export default function cloneDeep<ValueType extends unknown>(
   const typeStr = Object.prototype.toString.call(value)
   const newObj: { [key: string]: any } = typeStr === '[object Array]' ? [] : {}
   const valueObj = value as { [key: string]: any }
-  Object.keys(newObj).forEach((key) => {
+  Object.keys(valueObj).forEach((key) => {
     if (valueObj[key] && typeof valueObj[key] === 'object') {
       newObj[key] = cloneDeep(valueObj[key])
     } else {
