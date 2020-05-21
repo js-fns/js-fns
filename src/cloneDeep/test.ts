@@ -1,7 +1,7 @@
 import assert from 'assert'
 import cloneDeep from '.'
 
-describe('omit', function() {
+describe('cloneDeep', function () {
   it('bypass primitives', () => {
     assert(cloneDeep(1) === 1)
     assert(cloneDeep('hello') === 'hello')
@@ -30,7 +30,7 @@ describe('omit', function() {
     assert.deepEqual(result, {
       a: [1, 2, 3, 4],
       b: 2,
-      c: { d: { e: 5 }, f: 6 }
+      c: { d: { e: 5 }, f: 6 },
     })
     assert(result !== data)
     assert(result.a !== data.a)

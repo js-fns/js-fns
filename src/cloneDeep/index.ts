@@ -11,13 +11,13 @@ export default function cloneDeep<ValueType extends unknown>(
 ): ValueType {
   if (!value || !(typeof value === 'object')) return value
   const typeStr = Object.prototype.toString.call(value)
-  const newObj: { [key: string]: any } = Object.assign(
-    typeStr === '[object Array]' ? [] : {},
-    value
-  )
-  Object.keys(newObj).forEach((key) => {
-    if (newObj[key] && typeof newObj[key] === 'object') {
-      newObj[key] = cloneDeep(newObj[key])
+  const newObj: { [key: string]: any } = typeStr === '[object Array]' ? [] : {}
+  const valueObj = value as { [key: string]: any }
+  Object.keys(valueObj).forEach((key) => {
+    if (valueObj[key] && typeof valueObj[key] === 'object') {
+      newObj[key] = cloneDeep(valueObj[key])
+    } else {
+      newObj[key] = valueObj[key]
     }
   })
   return newObj as ValueType
