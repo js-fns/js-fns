@@ -21,6 +21,7 @@ module.exports = (config) => {
     captureTimeout: crossBrowser ? 3000000 : 60000,
 
     webpack: {
+      mode: 'development',
       devtool: 'inline-source-map',
 
       resolve: {
