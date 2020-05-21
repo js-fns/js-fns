@@ -53,13 +53,8 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - run: yarn
-      - name: Tests
-        uses: ianwalter/bsl@3.0.0
-        with:
-          args: make test-cross-browser
-        env:
-          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+
+      - run: make test-cross-browser
 
   system:
     name: System tests
