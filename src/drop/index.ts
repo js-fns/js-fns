@@ -9,7 +9,7 @@
  */
 export default function drop<ElementType>(
   array: Array<ElementType>,
-  howMany: number
+  howMany: number = 1
 ): Array<ElementType> {
   if (howMany < 1) {
     return array
