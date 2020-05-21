@@ -13,6 +13,11 @@ describe('pick', () => {
     assert.deepEqual(result, { a: 1, b: 2 })
   })
 
+  it('supports field name as the second argument', () => {
+    const result = pick(obj, 'a')
+    assert.deepEqual(result, { a: 1 })
+  })
+
   it('returns empty object if none of the keys are found', () => {
     // @ts-expect-error
     const result = pick(obj, ['nope', 'nah'])

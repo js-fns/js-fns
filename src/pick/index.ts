@@ -11,8 +11,8 @@ export default function pick<
   ObjectType extends {},
   Key extends keyof ObjectType,
   ReturnType extends Pick<ObjectType, Key>
->(object: ObjectType, keys: [Key, ...Key[]]): ReturnType {
-  return keys.reduce((result, key) => {
+>(object: ObjectType, keys: Key | [Key, ...Key[]]): ReturnType {
+  return (Array.isArray(keys) ? keys : [keys]).reduce((result, key) => {
     if (key in object) {
       result[key] = object[key]
     }

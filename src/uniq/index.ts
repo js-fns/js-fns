@@ -25,14 +25,14 @@ export default function uniq<ElementType>(
  * Creates an array with unique elements from the given array which uniqueness is determined by the element field
  *
  * @param array - The array to pick unique elements from
- * @param fieldName - The name of the field to check for uniqueness
+ * @param key - The name of the field to check for uniqueness
  *
  * @public
  */
 export default function uniq<
   ElementType extends {},
-  FieldNameType extends keyof ElementType
->(array: ElementType[], fieldName: FieldNameType): ElementType[]
+  Key extends keyof ElementType
+>(array: ElementType[], key: Key): ElementType[]
 
 /**
  * @internal
