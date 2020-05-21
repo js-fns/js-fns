@@ -54,6 +54,14 @@ jobs:
 
       - run: yarn
 
+      - uses: actions/cache@v1
+        id: sauceconnect-cache
+        with:
+          path: node_modules/sauce-connect-launcher/sc
+          key: ${{ runner.os }}-sauceconnect-${{ hashFiles('node_modules/sauce-connect-launcher/sc/versions.json') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
       - run: make test-cross-browser
 
   system:
