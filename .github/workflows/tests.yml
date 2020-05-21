@@ -55,7 +55,7 @@ jobs:
       - run: yarn
 
       - name: Tests
-        uses: ianwalter/bsl@v2.1.0
+        uses: ianwalter/bsl@v3
         with:
           args: make test-cross-browser
         env:
