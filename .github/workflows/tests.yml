@@ -63,6 +63,9 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - run: make test-cross-browser
+        env:
+          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+          SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
 
   system:
     name: System tests
