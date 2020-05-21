@@ -1,22 +1,26 @@
 process.env.CHROME_BIN = require('puppeteer').executablePath()
 
-module.exports = config => {
+const crossBrowser = process.env.CROSS_BROWSER === 'true'
+
+module.exports = (config) => {
   config.set({
     files: ['test/karmaTests.ts'],
 
     preprocessors: {
-      'test/karmaTests.ts': ['webpack', 'sourcemap']
+      'test/karmaTests.ts': ['webpack', 'sourcemap'],
     },
 
     frameworks: ['jasmine'],
 
-    browsers: ['ChromeHeadless'],
+    browsers: crossBrowser ? ['ie11'] : ['ChromeHeadless'],
+
+    reporters: ['dots'].concat(crossBrowser ? 'BrowserStack' : []),
 
     webpack: {
       devtool: 'inline-source-map',
 
       resolve: {
-        extensions: ['.json', '.js', '.ts']
+        extensions: ['.json', '.js', '.ts'],
       },
 
       module: {
@@ -24,14 +28,29 @@ module.exports = config => {
           {
             test: /\.ts$/,
             loader: 'babel-loader',
-            exclude: /node_modules/
-          }
-        ]
-      }
+            exclude: /node_modules/,
+          },
+        ],
+      },
     },
 
     webpackMiddleware: {
-      stats: 'errors-only'
-    }
+      stats: 'errors-only',
+    },
+
+    browserStack: {
+      username: process.env.BROWSERSTACK_USERNAME,
+      accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
+    },
+
+    customLaunchers: {
+      ie11: {
+        base: 'BrowserStack',
+        browser: 'ie',
+        browser_version: '11',
+        os: 'Windows',
+        os_version: '10',
+      },
+    },
   })
 }

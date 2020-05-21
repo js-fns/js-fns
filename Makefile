@@ -23,6 +23,9 @@ test-browser:
 test-browser-watch:
 	@${BIN}/karma start
 
+test-cross-browser:
+	@env CROSS_BROWSER=true ${BIN}/karma --single-run
+
 build:
 	@rm -rf lib
 	@env BABEL_ENV=commonjs ${BIN}/babel src --source-root src --out-dir lib --extensions .ts --out-file-extension .js --ignore "src/**/test.ts" --quiet
