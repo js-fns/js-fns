@@ -12,9 +12,15 @@ module.exports = (config) => {
 
     frameworks: ['jasmine'],
 
+    logLevel: config.LOG_DEBUG,
+
     browsers: crossBrowser ? ['ie11'] : ['ChromeHeadless'],
 
-    reporters: ['dots'].concat(crossBrowser ? 'BrowserStack' : []),
+    reporters: ['dots'].concat(crossBrowser ? 'saucelabs' : []),
+
+    // Sauce Connect takes time to download,
+    // so increase capture timeout to give it time
+    captureTimeout: crossBrowser ? 300000 : 60000,
 
     webpack: {
       devtool: 'inline-source-map',
@@ -38,18 +44,16 @@ module.exports = (config) => {
       stats: 'errors-only',
     },
 
-    browserStack: {
-      username: process.env.BROWSERSTACK_USERNAME,
-      accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
+    sauceLabs: {
+      testName: 'js-fns cross-browser tests',
     },
 
     customLaunchers: {
       ie11: {
-        base: 'BrowserStack',
-        browser: 'ie',
-        browser_version: '11',
-        os: 'Windows',
-        os_version: '10',
+        base: 'SauceLabs',
+        browserName: 'internet explorer',
+        platform: 'Windows 10',
+        version: '11',
       },
     },
   })
