@@ -24,7 +24,7 @@ test-browser-watch:
 	@env NODE_ENV=test ${BIN}/karma start
 
 test-cross-browser:
-	@env CROSS_BROWSER=true NODE_ENV=test ${BIN}/karma start --single-run
+	@env CROSS_BROWSER=true ${BIN}/karma start --single-run
 
 build:
 	@rm -rf lib
