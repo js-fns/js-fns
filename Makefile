@@ -18,10 +18,10 @@ test-node-watch:
 	@${BIN}/jest --watch
 
 test-browser:
-	@${BIN}/karma start --single-run
+	@env NODE_ENV=test ${BIN}/karma start --single-run
 
 test-browser-watch:
-	@${BIN}/karma start
+	@env NODE_ENV=test ${BIN}/karma start
 
 test-cross-browser:
 	@env CROSS_BROWSER=true ${BIN}/karma start --single-run
