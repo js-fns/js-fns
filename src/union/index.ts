@@ -21,5 +21,8 @@ export default function union<ElementType>(
     })
   })
 
-  return [...set]
+  const result: ElementType[] = []
+  set.forEach((e) => result.push(e))
+
+  return result
 }
