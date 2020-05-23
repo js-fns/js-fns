@@ -1,6 +1,7 @@
 import assert from 'assert'
 import throttle from '.'
 
+// TODO: Should be updated.
 describe('debounce', () => {
   it('executes function after given wait time since the last call', (done) => {
     let times = 0
