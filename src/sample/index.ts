@@ -9,6 +9,6 @@
 export default function sample<ElementType>(
   array: Array<ElementType>
 ): ElementType | undefined {
-  const randomIndex = Math.round(Math.random() * array.length - 1)
+  const randomIndex = Math.round(Math.random() * (array.length - 1))
   return array[randomIndex]
 }
