@@ -21,5 +21,5 @@ export default function union<ElementType>(
     })
   })
 
-  return Array.from(set)
+  return [...set]
 }
