@@ -35,15 +35,15 @@ export default function union<ElementType>(
     ? [firstArrayOrArrays, maybeSecondArray]
     : firstArrayOrArrays) as ElementType[][]
 
-  const uniqueMap = new Map()
+  const uniqueSet = new Set()
   const result: ElementType[] = []
 
   for (let arrayIndex = 0; arrayIndex < arrays.length; arrayIndex++) {
     const array = arrays[arrayIndex]
     for (let elementIndex = 0; elementIndex < array.length; elementIndex++) {
       const element = array[elementIndex]
-      if (!uniqueMap.has(element)) {
-        uniqueMap.set(element, true)
+      if (!uniqueSet.has(element)) {
+        uniqueSet.add(element)
         result.push(element)
       }
     }
