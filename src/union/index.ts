@@ -31,7 +31,7 @@ export default function union<ElementType>(
   firstArrayOrArrays: ElementType[] | ElementType[][],
   maybeSecondArray?: ElementType[]
 ): Array<ElementType> {
-  let arrays = (maybeSecondArray
+  const arrays = (maybeSecondArray
     ? [firstArrayOrArrays, maybeSecondArray]
     : firstArrayOrArrays) as ElementType[][]
 
