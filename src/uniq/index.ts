@@ -41,7 +41,7 @@ export default function uniq<ElementType>(
   array: ElementType[],
   mapper?: ((i: ElementType) => any) | keyof ElementType
 ): ElementType[] {
-  const map = new Map()
+  const set = new Set()
   const result: ElementType[] = []
   for (let i = 0; i < array.length; i++) {
     const element = array[i]
@@ -51,8 +51,8 @@ export default function uniq<ElementType>(
         : mapper
         ? element[mapper]
         : element
-    if (!map.has(key)) {
-      map.set(key, true)
+    if (!set.has(key)) {
+      set.add(key)
       result.push(element)
     }
   }
