@@ -19,7 +19,7 @@ export function debounce<InputFunction extends (...args: any[]) => any>(fn: Inpu
 export function difference<ElementType>(inputArray: Array<ElementType>, arrayToSubtract: Array<ElementType>): Array<ElementType>;
 
 // @public
-export function drop<ElementType>(array: Array<ElementType>, howMany: number): Array<ElementType>;
+export function drop<ElementType>(array: Array<ElementType>, howMany?: number): Array<ElementType>;
 
 // @public
 export function first<ElementType>(arr: ElementType[]): ElementType | undefined;
@@ -33,16 +33,16 @@ export function flatten<ElementType>(array: Array<ElementType | ElementType[]>):
 export function group<ElementType, GroupIdType extends string | number>(arr: ElementType[], mapper: (element: ElementType, index: number) => GroupIdType): GroupedElements<GroupIdType, ElementType>;
 
 // @public
-export function group<ElementType extends {}, FieldName extends keyof ElementType, GroupIdType extends ElementType[FieldName]>(arr: ElementType[], fieldName: FieldName): GroupIdType extends number | string ? GroupedElements<GroupIdType, ElementType> : never;
+export function group<ElementType extends {}, Key extends keyof ElementType, GroupIdType extends ElementType[Key]>(arr: ElementType[], key: Key): GroupIdType extends number | string ? GroupedElements<GroupIdType, ElementType> : never;
 
 // @public
 export function last<ElementType>(array: ElementType[]): ElementType | undefined;
 
 // @public
-export function omit<ObjectType extends {}, FieldName extends keyof ObjectType>(object: ObjectType, keys: FieldName | [FieldName, ...FieldName[]]): Omit<ObjectType, FieldName>;
+export function omit<ObjectType extends {}, Key extends keyof ObjectType>(object: ObjectType, keys: Key | [Key, ...Key[]]): Omit<ObjectType, Key>;
 
 // @public
-export function pick<ObjectType extends {}, Key extends keyof ObjectType, ReturnType extends Pick<ObjectType, Key>>(object: ObjectType, keys: [Key, ...Key[]]): ReturnType;
+export function pick<ObjectType extends {}, Key extends keyof ObjectType, ReturnType extends Pick<ObjectType, Key>>(object: ObjectType, keys: Key | [Key, ...Key[]]): ReturnType;
 
 // @public
 export function remove<ElementType>(array: ElementType[], element: ElementType): ElementType[];
@@ -60,7 +60,7 @@ export function uniq<ElementType>(array: ElementType[]): ElementType[];
 export function uniq<ElementType>(array: ElementType[], mapper: (i: ElementType) => any): ElementType[];
 
 // @public
-export function uniq<ElementType extends {}, FieldNameType extends keyof ElementType>(array: ElementType[], fieldName: FieldNameType): ElementType[];
+export function uniq<ElementType extends {}, Key extends keyof ElementType>(array: ElementType[], key: Key): ElementType[];
 
 
 // (No @packageDocumentation comment for this package)
