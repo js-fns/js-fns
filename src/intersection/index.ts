@@ -39,21 +39,5 @@ export default function intersection<ElementType>(
   const biggestArray = arrays.sort((a, b) => a.length - b.length)[0]
   if (!biggestArray || !biggestArray.length) return []
 
-  const result: Array<ElementType> = []
-  for (
-    let elementIndex = 0;
-    elementIndex < biggestArray.length;
-    elementIndex++
-  ) {
-    const element = biggestArray[elementIndex]
-    let found = true
-    for (let setIndex = 0; setIndex < sets.length; setIndex++) {
-      if (!sets[setIndex].has(element)) {
-        found = false
-        break
-      }
-    }
-    if (found) result.push(element)
-  }
-  return result
+  return biggestArray.filter((element) => sets.every((set) => set.has(element)))
 }
