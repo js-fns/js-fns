@@ -8,11 +8,7 @@ describe('union', () => {
   })
 
   it('allows to pass more than two arrays', () => {
-    const result = union([
-      [2, 1],
-      [2, 3],
-      [4, 5],
-    ])
+    const result = union([2, 1], [2, 3], [4, 5])
     assert.deepEqual(result, [2, 1, 3, 4, 5])
   })
 })

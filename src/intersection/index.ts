@@ -1,16 +1,63 @@
 /**
- * Creates an array with elements present in all given arrays.
- *
- * @param firstArray - The first array to get elements from
- * @param secondArray - The second array to get elements from
- * @returns An array with elements present in all given arrays
- *
- * @public
+ * @internal
  */
 export default function intersection<FirstElementType, SecondElementType>(
   firstArray: FirstElementType[],
   secondArray: SecondElementType[]
 ): Array<FirstElementType & SecondElementType>
+
+/**
+ * @internal
+ */
+export default function intersection<
+  FirstElementType,
+  SecondElementType,
+  ThirdElementType
+>(
+  firstArray: FirstElementType[],
+  secondArray: SecondElementType[],
+  thirdArray: ThirdElementType[]
+): Array<FirstElementType & SecondElementType & ThirdElementType>
+
+/**
+ * @internal
+ */
+export default function intersection<
+  FirstElementType,
+  SecondElementType,
+  ThirdElementType,
+  FourthElementType
+>(
+  firstArray: FirstElementType[],
+  secondArray: SecondElementType[],
+  thirdArray: ThirdElementType[],
+  fourthArray: FourthElementType[]
+): Array<
+  FirstElementType & SecondElementType & ThirdElementType & FourthElementType
+>
+
+/**
+ * @internal
+ */
+export default function intersection<
+  FirstElementType,
+  SecondElementType,
+  ThirdElementType,
+  FourthElementType,
+  FifthElementType
+>(
+  firstArray: FirstElementType[],
+  secondArray: SecondElementType[],
+  thirdArray: ThirdElementType[],
+  fourthArray: FourthElementType[],
+  fifthArray: FifthElementType[]
+): Array<
+  FirstElementType &
+    SecondElementType &
+    ThirdElementType &
+    FourthElementType &
+    FifthElementType
+>
 
 /**
  * Creates an array with elements present in all given arrays.
@@ -21,19 +68,15 @@ export default function intersection<FirstElementType, SecondElementType>(
  * @public
  */
 export default function intersection<ElementType>(
-  arrays: ElementType[][]
+  ...arrays: ElementType[][]
 ): Array<ElementType>
 
 /**
  * @internal
  */
 export default function intersection<ElementType>(
-  firstArrayOrArrays: ElementType[] | ElementType[][],
-  maybeSecondArray?: ElementType[]
+  ...arrays: ElementType[][]
 ): Array<ElementType> {
-  const arrays = (maybeSecondArray
-    ? [firstArrayOrArrays, maybeSecondArray]
-    : firstArrayOrArrays) as ElementType[][]
   const sets = arrays.map((array) => new Set(array))
 
   const biggestArray = arrays.sort((a, b) => a.length - b.length)[0]
