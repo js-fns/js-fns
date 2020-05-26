@@ -11,5 +11,9 @@ export default function findIndex<ElementType>(
   array: Array<ElementType>,
   matcher: (element: ElementType) => boolean
 ): number | -1 {
-  return array.findIndex(matcher)
+  for (let index = 0; index < array.length; index++) {
+    const element = array[index]
+    if (matcher(element)) return index
+  }
+  return -1
 }
