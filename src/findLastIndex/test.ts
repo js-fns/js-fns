@@ -1,12 +1,12 @@
 import assert from 'assert'
-import findLast from '.'
+import findLastIndex from '.'
 import sinon from 'sinon'
 
 describe('findLast', () => {
-  var array = [1, 2, 3]
+  const array = [1, 2, 3]
 
-  it('finds the last element in the array', () => {
-    assert(findLast(array, (i) => i > 1) === 3)
+  it('finds the last element index in the array', () => {
+    assert(findLastIndex(array, (i) => i > 1) === 2)
   })
 
   it('stops execution as soon as it finds the element', () => {
@@ -16,11 +16,11 @@ describe('findLast', () => {
     matcher.withArgs(2).returns(true)
     matcher.withArgs(3).returns(false)
 
-    assert(findLast(array, matcher) === 2)
+    assert(findLastIndex(array, matcher) === 1)
     assert(matcher.callCount === 2)
   })
 
-  it('returns undefined', () => {
-    assert(findLast(array, (i) => i === 420) === undefined)
+  it('returns -1 if the element is not found', () => {
+    assert(findLastIndex(array, (i) => i === 420) === -1)
   })
 })
