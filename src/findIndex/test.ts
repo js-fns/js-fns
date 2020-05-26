@@ -1,12 +1,12 @@
 import assert from 'assert'
-import find from '.'
+import findIndex from '.'
 import sinon from 'sinon'
 
-describe('find', () => {
+describe('findIndex', () => {
   const array = [1, 2, 3]
 
-  it('finds first element by condition', () => {
-    assert(find(array, (i) => i > 1) === 2)
+  it('finds first element index by condition', () => {
+    assert(findIndex(array, (i) => i > 1) === 1)
   })
 
   it('stops execution as soon as it finds the element', () => {
@@ -16,11 +16,11 @@ describe('find', () => {
     matcher.withArgs(2).returns(true)
     matcher.withArgs(3).returns(true)
 
-    assert(find(array, matcher) === 2)
+    assert(findIndex(array, matcher) === 1)
     assert(matcher.callCount === 2)
   })
 
-  it('returns undefined', () => {
-    assert(find(array, (i) => i === 420) === undefined)
+  it('returns -1 if element is not found', () => {
+    assert(findIndex(array, (i) => i === 420) === -1)
   })
 })
