@@ -1,6 +1,6 @@
 {
   "name": "js-fns",
-  "version": "2.2.0",
+  "version": "2.3.1",
   "description": "Modern JavaScript utility library focused on the build size",
   "main": "./index.js",
   "module": "./index.mjs",
