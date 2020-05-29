@@ -36,7 +36,7 @@ build:
 	@rsync --archive --prune-empty-dirs --exclude '*.ts' --relative src/./ lib
 
 docs: build
-	@${BIN}/api-extractor run --local --verbose
+	@${BIN}/typedoc --json docs/docs.json --mode library src/index.ts
 .PHONY: docs
 
 publish: build
