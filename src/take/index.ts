@@ -1,5 +1,5 @@
 /**
- * Creates a copy of an array with the given number of elements starting from the beginning
+ * Creates a copy of an array with the given number of elements starting from the beginning.
  *
  * @param array - The array to copy elements from
  * @param howMany - The number of elements to copy, default is 1

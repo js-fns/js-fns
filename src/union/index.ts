@@ -1,5 +1,5 @@
 /**
- * Creates a new array with all unique elements from the given arrays
+ * Creates a new array with all unique elements from the given arrays.
  *
  * @param arrays - The array of arrays of elements to get unique elements from
  * @returns An array with all unique elements from the given arrays

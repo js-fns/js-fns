@@ -4,7 +4,6 @@
  * @param array - The array to pick unique elements from
  * @returns An array with unique elements from the given array
  *
- * @category Array
  * @public
  */
 export default function uniq<ElementType>(array: ElementType[]): ElementType[]
@@ -36,6 +35,7 @@ export default function uniq<
 >(array: ElementType[], key: Key): ElementType[]
 
 /**
+ * @category Array
  * @internal
  */
 export default function uniq<ElementType>(

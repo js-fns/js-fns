@@ -65,7 +65,6 @@ export default function intersection<
  * @param arrays - The array of arrays of elements to get elements from
  * @returns An array with elements present in all given arrays
  *
- * @category Array
  * @public
  */
 export default function intersection<ElementType>(
@@ -73,6 +72,7 @@ export default function intersection<ElementType>(
 ): Array<ElementType>
 
 /**
+ * @category Array
  * @internal
  */
 export default function intersection<ElementType>(
