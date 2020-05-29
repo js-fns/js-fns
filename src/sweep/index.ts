@@ -4,6 +4,7 @@
  * @param array - The array to remove elements from
  * @returns An array without elements equal null or undefined
  *
+ * @category Array
  * @public
  */
 export default function sweep<

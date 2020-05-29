@@ -4,6 +4,7 @@
  * @param array - The array to alter
  * @returns The copy of the array with elements "flatten"
  *
+ * @category Array
  * @public
  */
 export default function flatten<ElementType>(

@@ -5,6 +5,7 @@
  * @param keys - The array of field names to pick
  * @returns An object with the given fields picked
  *
+ * @category Object
  * @public
  */
 export default function pick<

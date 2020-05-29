@@ -5,6 +5,7 @@
  * @param arrayToSubstract - The array of elements to remove
  * @returns An array basing of the first one without element from the second
  *
+ * @category Array
  * @public
  */
 export default function difference<ElementType>(

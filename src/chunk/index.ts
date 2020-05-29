@@ -5,6 +5,7 @@
  * @param size - The size of a chunk
  * @returns An array of chunks of the given size
  *
+ * @category Array
  * @public
  */
 export default function chunk<ElementType>(

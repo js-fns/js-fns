@@ -11,6 +11,7 @@ type ThrottledFunction<Fn extends (...args: any[]) => any> = Fn extends (
  * @param wait - The timeout
  * @returns A function based on the provided function that execute no more than once per the given timeout
  *
+ * @category Function
  * @public
  */
 export default function throttle<InputFunction extends (...args: any[]) => any>(

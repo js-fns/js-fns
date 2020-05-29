@@ -12,6 +12,7 @@ export type GroupedElements<
  * @param mapper - The function that returns the group id
  * @returns An object where the key is the group id and the value is an array of elements grouped by this id
  *
+ * @category Array
  * @public
  */
 export default function group<ElementType, GroupIdType extends string | number>(
@@ -26,6 +27,7 @@ export default function group<ElementType, GroupIdType extends string | number>(
  * @param key - The name of the field to use as the id
  * @returns An object where the key is the group id and the value is an array of elements grouped by this id
  *
+ * @category Array
  * @public
  */
 export default function group<

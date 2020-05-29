@@ -4,6 +4,7 @@
  * @param arrays - The array of arrays of elements to get unique elements from
  * @returns An array with all unique elements from the given arrays
  *
+ * @category Array
  * @public
  */
 export default function union<ElementType>(
