@@ -1,10 +1,11 @@
 import { collection } from 'typesaurus'
-import { FunctionTsDoc } from './types'
+import { TypeDocFunction } from './typedoc'
+import { JsonBond } from './bond'
 
 const db = {
   packages: collection<Package>('packages'),
   versions: collection<Version>('versions'),
-  docs: collection<Doc>('docs'),
+  pages: collection<Page>('pages'),
 }
 export default db
 
@@ -22,30 +23,32 @@ export type Version = {
   package: string
   version: string
   preRelease: boolean
-  docs: DocPreview[]
+  pages: PagePreview[]
 }
 
-export type DocPreview = {
+export type PagePreview = {
   slug: string
   category: string
   title: string
   summary: string
 }
 
-export type Doc = {
+export type Page = {
   package: string
   version: string
   slug: string
   category: string
   title: string
   summary: string
-} & (TsDoc | MarkdownDoc)
+} & (TsDocPage | MarkdownPage)
 
-export type TsDoc = {
+export type TsDocPage = {
+  type: 'tsdoc'
   name: string
-  tsdoc: string // TODO: Use bonded JSON of FunctionTsDoc
+  tsdoc: JsonBond<TypeDocFunction>
 }
 
-export type MarkdownDoc = {
+export type MarkdownPage = {
+  type: 'markdown'
   markdown: string
 }

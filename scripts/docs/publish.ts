@@ -1,9 +1,10 @@
 import docs from '../../docs/docs.json'
-import db from './db'
+import db, { Page } from './db'
 import admin from 'firebase-admin'
-import { add, update, value, batch, id } from 'typesaurus'
-import { FunctionTsDoc } from './types'
+import { add, update, value, batch, id, get } from 'typesaurus'
+import { TypeDocFunction } from './typedoc'
 import { pick } from '../../src'
+import { stringify } from './bond'
 
 admin.initializeApp()
 
@@ -20,11 +21,12 @@ if (!version || !versionRegExp.test(version)) {
 
 const preRelease = preReleaseRegExp.test(version)
 
-const fnDocs = docs.children.map((tsdoc) => {
+const fnPages: Page[] = docs.children.map((tsdoc: TypeDocFunction) => {
   const { name } = tsdoc
   const category = findCategory(tsdoc) || 'Common'
   const summary = findSummary(tsdoc) || ''
   return {
+    type: 'tsdoc',
     package: packageName,
     version,
     slug: name,
@@ -32,11 +34,11 @@ const fnDocs = docs.children.map((tsdoc) => {
     title: name,
     summary,
     name,
-    tsdoc: JSON.stringify(tsdoc),
+    tsdoc: stringify(tsdoc),
   }
 })
 
-const docsBatch = batch()
+const pagesBatch = batch()
 
 Promise.all([
   update(db.packages, packageName, {
@@ -47,29 +49,29 @@ Promise.all([
     package: packageName,
     version,
     preRelease,
-    docs: fnDocs.map((doc) =>
-      pick(doc, ['slug', 'category', 'title', 'summary'])
+    pages: fnPages.map((page) =>
+      pick(page, ['slug', 'category', 'title', 'summary'])
     ),
   }),
 
   Promise.all(
-    fnDocs.map((doc) =>
-      id().then((docId) => docsBatch.set(db.docs, docId, doc))
+    fnPages.map((page) =>
+      id().then((pageId) => pagesBatch.set(db.pages, pageId, page))
     )
-  ).then(() => docsBatch.commit()),
+  ).then(() => pagesBatch.commit()),
 ]).then(() => {
   console.log('Done!')
   process.exit(0)
 })
 
-function findCategory(tsdoc: FunctionTsDoc) {
+function findCategory(tsdoc: TypeDocFunction) {
   const category = docs.groups[0].categories.find((category) =>
     category.children.includes(tsdoc.id)
   )
   return category?.title
 }
 
-function findSummary(tsdoc: FunctionTsDoc) {
+function findSummary(tsdoc: TypeDocFunction) {
   for (const signature of tsdoc.signatures) {
     const summary = signature.comment.shortText
     if (summary) return summary
