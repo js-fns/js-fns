@@ -44,7 +44,7 @@ publish: build
 
 publish-docs: guard-production-app-env build-docs
 	env GOOGLE_APPLICATION_CREDENTIALS=${CURDIR}/secrets/keys/${APP_ENV}.json \
-		${BIN}/ts-node scripts/docs/publish.ts
+		${BIN}/js-fns-docs docs/docs.json
 
 guard-production-app-env:
 	@[ "${APP_ENV}" = "production" ] \

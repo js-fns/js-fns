@@ -19,6 +19,7 @@
     "@babel/plugin-proposal-optional-chaining": "^7.10.1",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-typescript": "^7.9.0",
+    "@js-fns/docs": "^0.1.2",
     "@types/jest": "25",
     "@types/node": "^12.0.4",
     "@types/sinon": "^7.0.13",

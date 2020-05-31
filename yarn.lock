@@ -1180,6 +1180,16 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@js-fns/docs@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@js-fns/docs/-/docs-0.1.2.tgz#4bcd9cd50778b748aefb25a6788d216263dcb896"
+  integrity sha512-dKM/epChbeYBaZwPAv5HDC/0zYhRdfRKptu+Tg6fU7m//LHwNd85GhmXJm+fAya2uNrO74TFehF6CEwsSk74bA==
+  dependencies:
+    firebase-admin "^8.12.1"
+    js-fns "^2.4.0"
+    json-bond "^0.1.0"
+    typesaurus "^6.0.0"
+
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@protobufjs/aspromise/-/aspromise-1.1.2.tgz#9b8b0cc663d669a7d8f6f5d0893a14d348f30fbf"
@@ -5028,6 +5038,11 @@ jquery@^3.4.1:
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
   integrity sha512-XwIBPqcMn57FxfT+Go5pzySnm4KWkT1Tv7gjrpT1srtf8Weynl6R273VJ5GjkRb51IzMp5nbaPjJXMWeju2MKg==
 
+js-fns@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/js-fns/-/js-fns-2.4.0.tgz#699f731eb86d15c5d838014c9ce30f4fe04653e7"
+  integrity sha512-++RlQtJFbGgfsAsTOfuk5dy0ccFGBwBsotk2UFrYVDt5YrFOxaXVQPgWf65BZ63Dhph7F9BtPzsSljdrv/E5FA==
+
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -5094,6 +5109,11 @@ json-bigint@^0.3.0:
   integrity sha1-DM2RLEuCcNBfBW+9E4FLU9OCWx4=
   dependencies:
     bignumber.js "^7.0.0"
+
+json-bond@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/json-bond/-/json-bond-0.1.0.tgz#a679e6c7f2c9a7b622208da4226f5a2c6e304a34"
+  integrity sha512-oOTXdcq0PCJr6OUnzyLN2n0b5msex2KWP60/mgZpop8P6WGWQgZr9frPs4vap+cJG89Mn+hSE8dsEPwNU2B3Ig==
 
 json-parse-better-errors@^1.0.1, json-parse-better-errors@^1.0.2:
   version "1.0.2"
