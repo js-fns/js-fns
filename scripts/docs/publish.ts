@@ -1,10 +1,10 @@
-import docs from '../../docs/docs.json'
 import db, { Page } from './db'
 import admin from 'firebase-admin'
 import { add, update, value, batch, id, get } from 'typesaurus'
 import { TypeDocFunction } from './typedoc'
 import { pick } from '../../src'
 import { stringify } from './bond'
+import docs from './docs'
 
 admin.initializeApp()
 
@@ -73,7 +73,7 @@ function findCategory(tsdoc: TypeDocFunction) {
 
 function findSummary(tsdoc: TypeDocFunction) {
   for (const signature of tsdoc.signatures) {
-    const summary = signature.comment.shortText
+    const summary = signature.comment?.shortText
     if (summary) return summary
   }
 }
