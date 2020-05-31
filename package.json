@@ -42,5 +42,7 @@
     "typescript": "3.9",
     "webpack": "^4.37.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "ts-expect": "^1.1.0"
+  }
 }

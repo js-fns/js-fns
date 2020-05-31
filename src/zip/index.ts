@@ -1,31 +1,3 @@
-// const arrays = [['a'], [1, 2], [true, false]]
-
-// assert.deepEqual(zip<any>(...arrays), [
-//   ['a', 1, true],
-//   [undefined, 2, false],
-// ])
-
-/**
- * @internal
- */
-export default function zip<FirstElementType, SecondElementType>(
-  firstArray: FirstElementType[],
-  secondArray: SecondElementType[]
-): Array<Array<FirstElementType | SecondElementType>>
-
-/**
- * @internal
- */
-export default function zip<
-  FirstElementType,
-  SecondElementType,
-  ThirdElementType
->(
-  firstArray: FirstElementType[],
-  secondArray: SecondElementType[],
-  thirdArray: ThirdElementType[]
-): Array<Array<FirstElementType | SecondElementType | ThirdElementType>>
-
 /**
  * Creates an array with elements present in all given arrays.
  *
@@ -34,9 +6,18 @@ export default function zip<
  *
  * @public
  */
+export default function zip<ElementsArray extends any[][]>(
+  ...arrays: ElementsArray
+): ElementsArray extends Array<Array<infer ElementType>>
+  ? ElementType[][]
+  : never
+
+/**
+ * @internal
+ */
 export default function zip<ElementType>(
   ...arrays: ElementType[][]
-): Array<Array<ElementType>> {
+): ElementType[][] {
   if (arrays.length === 0) {
     return arrays
   }
