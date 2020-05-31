@@ -10,10 +10,10 @@ export default function fromEntries<
   Key extends string | number,
   Value,
   Entry extends [Key, Value],
-  ReturnType extends { [key in Key]: Value }
+  ReturnType extends { [key: string]: Value }
 >(array: Entry[]): ReturnType {
-  return array.reduce((acc, cur) => {
-    acc[cur[0]] = cur[1]
+  return array.reduce((acc, [key, value]) => {
+    acc[key] = value as ReturnType[typeof key]
     return acc
-  }, {}) as ReturnType
+  }, {} as Partial<ReturnType>) as ReturnType
 }
