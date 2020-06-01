@@ -1,5 +1,6 @@
 import assert from 'assert'
 import entries from '.'
+import { expectType } from 'ts-expect'
 
 describe('entries', () => {
   const object = {
@@ -10,6 +11,7 @@ describe('entries', () => {
 
   it('returns entries array', () => {
     const result = entries(object)
+    expectType<number | string | { d: any[] }>(result[0][1])
     assert.deepEqual(result, [
       ['2', 3],
       ['a', 'B'],
