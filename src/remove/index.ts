@@ -4,6 +4,7 @@
  * @param array - The array to remove the element from
  * @param element - The element to remove
  *
+ * @category Array
  * @public
  */
 export default function remove<ElementType>(

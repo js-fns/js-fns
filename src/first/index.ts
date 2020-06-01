@@ -4,6 +4,7 @@
  * @param array - The array to return the first element from
  * @returns The first element of the array
  *
+ * @category Array
  * @public
  */
 

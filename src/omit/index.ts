@@ -5,6 +5,7 @@
  * @param keys - The field names to remove
  * @returns The copy of the object without given fields
  *
+ * @category Object
  * @public
  */
 export default function omit<

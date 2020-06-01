@@ -5,6 +5,7 @@
  * @param howMany - The number of elements to remove
  * @returns A clone of the array with the given number of elements removed from the beginning
  *
+ * @category Array
  * @public
  */
 export default function drop<ElementType>(

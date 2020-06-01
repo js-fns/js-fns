@@ -1,7 +1,7 @@
-type DebouncedFunction<Fn extends (...args: any[]) => any> = Fn extends ((
+type DebouncedFunction<Fn extends (...args: any[]) => any> = Fn extends (
   ...args: infer Args
-) => any)
-  ? ((...args: Args) => void)
+) => any
+  ? (...args: Args) => void
   : never
 
 /**
@@ -11,6 +11,7 @@ type DebouncedFunction<Fn extends (...args: any[]) => any> = Fn extends ((
  * @param wait - The timeout
  * @returns A function based on the provided function that will execute after the given timeout after the last call
  *
+ * @category Function
  * @public
  */
 export default function debounce<InputFunction extends (...args: any[]) => any>(

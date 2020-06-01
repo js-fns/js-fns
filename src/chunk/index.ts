@@ -5,6 +5,14 @@
  * @param size - The size of a chunk
  * @returns An array of chunks of the given size
  *
+ * @example
+ * Group the array elements into chunks of 2:
+ * ```ts
+ * chunk([1, 2, 3, 4, 5, 6, 7], 2)
+ * //=> [[1, 2], [3, 4], [5, 6], [7]]
+ * ```
+ *
+ * @category Array
  * @public
  */
 export default function chunk<ElementType>(

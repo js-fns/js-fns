@@ -4,6 +4,7 @@
  * @param value - The value to clone
  * @returns Deep clone of the given value
  *
+ * @category Common
  * @public
  */
 export default function cloneDeep<ValueType extends unknown>(

@@ -5,6 +5,7 @@
  * @param matcher - The function that returns true if element satisfies a condition
  * @returns An element that satisfies the condition
  *
+ * @category Array
  * @public
  */
 export default function find<ElementType>(

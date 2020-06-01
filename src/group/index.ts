@@ -40,6 +40,7 @@ export default function group<
   : never
 
 /**
+ * @category Array
  * @internal
  */
 export default function group<ElementType, GroupIdType extends string | number>(

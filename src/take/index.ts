@@ -1,10 +1,11 @@
 /**
- * Creates a copy of an array with the given number of elements starting from the beginning
+ * Creates a copy of an array with the given number of elements starting from the beginning.
  *
  * @param array - The array to copy elements from
  * @param howMany - The number of elements to copy, default is 1
  * @returns The copy of the array with the given number of elements from the beginning
  *
+ * @category Array
  * @public
  */
 export default function take<ElementType>(

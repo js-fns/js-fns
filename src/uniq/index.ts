@@ -35,6 +35,7 @@ export default function uniq<
 >(array: ElementType[], key: Key): ElementType[]
 
 /**
+ * @category Array
  * @internal
  */
 export default function uniq<ElementType>(

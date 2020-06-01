@@ -4,6 +4,7 @@
  * @param array - The array to remove elements from
  * @returns An array without falsy elements
  *
+ * @category Array
  * @public
  */
 export default function truthy<

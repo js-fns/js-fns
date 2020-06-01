@@ -4,6 +4,7 @@
  * @param array - The array to get element from
  * @returns A random element
  *
+ * @category Array
  * @public
  */
 export default function sample<ElementType>(

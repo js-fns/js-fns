@@ -35,9 +35,18 @@ build:
 	@cp {package.json,*.md} lib
 	@rsync --archive --prune-empty-dirs --exclude '*.ts' --relative src/./ lib
 
-docs: build
-	@${BIN}/api-extractor run --local --verbose
+build-docs:
+	@${BIN}/typedoc --json docs/docs.json --mode library src/index.ts
 .PHONY: docs
 
 publish: build
 	cd lib && npm publish --access public
+
+publish-docs: guard-production-app-env build-docs
+	env GOOGLE_APPLICATION_CREDENTIALS=${CURDIR}/secrets/keys/${APP_ENV}.json \
+		${BIN}/js-fns-docs docs/docs.json
+
+guard-production-app-env:
+	@[ "${APP_ENV}" = "production" ] \
+		|| [ "${APP_ENV}" = "staging" ] \
+		|| (echo "(•̀o•́)ง APP_ENV should be equal 'production' or 'staging'" && exit 1)

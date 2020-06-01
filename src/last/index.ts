@@ -4,6 +4,7 @@
  * @param array - The array to return the last element from
  * @returns The last element of the array
  *
+ * @category Array
  * @public
  */
 export default function last<ElementType>(

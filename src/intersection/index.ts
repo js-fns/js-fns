@@ -72,6 +72,7 @@ export default function intersection<ElementType>(
 ): Array<ElementType>
 
 /**
+ * @category Array
  * @internal
  */
 export default function intersection<ElementType>(
