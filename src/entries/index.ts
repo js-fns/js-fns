@@ -1,6 +1,7 @@
-export type Entry<Key, Value> = [Key, Value]
-
-export type Entries<Key, Value> = Entry<Key, Value>[]
+export interface Entries<Input extends { [key: string]: any }>
+  extends Array<
+    [keyof Input, Input extends { [key: string]: infer Value } ? Value : never]
+  > {}
 
 /**
  * Creates an array of arrays where the first element is the key and second is the value.
@@ -10,11 +11,11 @@ export type Entries<Key, Value> = Entry<Key, Value>[]
  *
  * @public
  */
-export default function entries<Key extends string | number, Value>(
-  object: { [key in Key]: Value }
-): Entries<Key, Value> {
-  return (Object.keys(object) as Key[]).reduce<Entries<Key, Value>>(
+export default function entries<Input extends { [key: string]: any }>(
+  object: Input
+): Entries<Input> {
+  return Object.keys(object).reduce<[string, any][]>(
     (acc, key) => acc.concat([[key, object[key]]]),
     []
-  )
+  ) as Entries<Input>
 }
