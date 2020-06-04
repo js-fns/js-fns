@@ -1,5 +1,5 @@
 import assert from 'assert'
-import { expectType } from 'ts-expect'
+import { expectType } from '../../test/utils'
 import zip from '.'
 
 describe('zip', () => {
