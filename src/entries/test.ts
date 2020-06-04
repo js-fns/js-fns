@@ -1,6 +1,6 @@
 import assert from 'assert'
 import entries from '.'
-import { expectType } from 'ts-expect'
+import { expectType } from '../../test/utils'
 
 describe('entries', () => {
   const object = {

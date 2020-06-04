@@ -1,7 +1,7 @@
 import assert from 'assert'
 import fromEntries from '.'
 import entries from '../entries'
-import { expectType } from 'ts-expect'
+import { expectType } from '../../test/utils'
 
 describe('fromEntries', function () {
   it('returns an object from array', function () {
