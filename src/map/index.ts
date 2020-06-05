@@ -1,9 +1,29 @@
+/**
+ * Maps through entries of the given object and returns values by the given key.
+ *
+ * @param object - The object to map
+ * @param key - The key to map with
+ * @returns The values by the given key
+ *
+ * @category Collection
+ * @public
+ */
 export default function map<
   ValueType,
   Key extends keyof ValueType,
   ResultType extends ValueType[Key]
 >(object: { [key: string]: ValueType }, key: Key): ResultType[]
 
+/**
+ * Maps through entries of the given object and collects values returned from the mapper function.
+ *
+ * @param object - The object to map
+ * @param mapper - The mapper function
+ * @returns The values returned from the mapper function
+ *
+ * @category Collection
+ * @public
+ */
 export default function map<
   ObjectType extends { [key: string]: ValueType },
   ValueType,
@@ -14,12 +34,32 @@ export default function map<
   mapper: (element: ValueType, index: Key) => ResultType
 ): ResultType[]
 
+/**
+ * Maps through elements of the given array and returns values by the given key.
+ *
+ * @param array - The array to map
+ * @param key - The key to map with
+ * @returns The values by the given key
+ *
+ * @category Collection
+ * @public
+ */
 export default function map<
   ElementType extends {},
   Key extends keyof ElementType,
   ResultType extends ElementType[Key]
 >(array: ElementType[], mapper: Key): ResultType[]
 
+/**
+ * Maps through elements of the given array and collects values returned from the mapper function.
+ *
+ * @param array - The array to map
+ * @param mapper - The mapper function
+ * @returns The values returned from the mapper function
+ *
+ * @category Collection
+ * @public
+ */
 export default function map<ElementType, ResultType>(
   array: ElementType[],
   mapper: (element: ElementType, index: number) => ResultType
