@@ -11,7 +11,7 @@ describe('map', () => {
       assert.deepEqual(result, ['11', '21', '31'])
     })
 
-    it('passes indecies to mapper function', () => {
+    it('passes indices to mapper function', () => {
       const object = { a: '1', b: '2', c: '3' }
       const result = map(object, (value, key) => key)
       expectType<string[]>(result)
@@ -34,7 +34,7 @@ describe('map', () => {
       assert.deepEqual(result, ['11', '21', '31'])
     })
 
-    it('passes indecies to mapper function', () => {
+    it('passes indices to mapper function', () => {
       const array = [1, 2, 3]
       const result = map(array, (el, i) => i)
       expectType<number[]>(result)
