@@ -7,9 +7,9 @@ describe('shuffle test', () => {
 
     const arr = [1, 2, 3, 4]
     const comparator = (a: number, b: number) => a - b
-    assert.deepEqual(
-      arr.sort(comparator),
-      shuffle([1, 2, 3, 4]).sort(comparator)
-    )
+    assert.deepEqual(arr.sort(comparator), shuffle(arr).sort(comparator))
+
+    // the original array remains unchanged
+    assert.deepEqual(arr, [1, 2, 3, 4])
   })
 })

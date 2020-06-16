@@ -1,5 +1,5 @@
 /**
- * Shuffles the array randomly as per the  fisher–Yates algorithm.
+ * Shuffles the array randomly as per the Fisher–Yates algorithm.
  *
  * @param array - The array to shuffle
  * @returns The randomly shuffled array
