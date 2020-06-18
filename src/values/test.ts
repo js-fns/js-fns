@@ -18,4 +18,12 @@ describe('values', () => {
   it('returns an empty array for an empty object', () => {
     assert.deepEqual(values({}), [])
   })
+
+  it('returns an array of characters of the given string', () => {
+    assert.deepEqual(values('abcd'), ['a', 'b', 'c', 'd'])
+  })
+
+  it('returns the same array if an array is passed', () => {
+    assert.deepEqual(values([1, 2, 3]), [1, 2, 3])
+  })
 })

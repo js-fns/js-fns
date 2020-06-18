@@ -1,22 +1,63 @@
 /**
- * Performs a reduce on the elements in reverse order
+ * Accumulates entries of the given object in reverse order.
  *
- * @param array - The array to reduce
- * @param callback - The callback function with current output value and current array element
- * @param initialValue - The initial value to start with
- * @returns The reduced array output
+ * @param object - The object to reduce
+ * @param reducer - The reducer function
+ * @param initialValue - The initial accumulator value
+ * @returns The accumulated value
  *
- * @category Array
+ * @category Collection
  * @public
  */
-export default function reduceRight<ArrayType, InitialVal>(
-  arr: ArrayType[],
-  cb: (acc: InitialVal, val: ArrayType) => InitialVal,
-  initialValue: InitialVal
-): InitialVal {
-  let val = initialValue
-  for (let i = arr.length - 1; i >= 0; i--) {
-    val = cb(val, arr[i])
+export default function reduceRight<
+  Key extends string,
+  ObjectType extends { [key: string]: ValueType },
+  AccumulatorType,
+  ValueType
+>(
+  object: { [key in Key]: ValueType },
+  reducer: (
+    accumulator: AccumulatorType,
+    value: ValueType,
+    key: Key
+  ) => AccumulatorType,
+  initialValue: AccumulatorType
+): AccumulatorType
+
+/**
+ * Accumulates elements of the given array in reverse order.
+ *
+ * @param array - The array to reduce
+ * @param reducer - The reducer function
+ * @param initialValue - The initial accumulator value
+ * @returns The accumulated value
+ *
+ * @category Collection
+ * @public
+ */
+export default function reduceRight<AccumulatorType, ValueType>(
+  object: ValueType[],
+  reducer: (
+    accumulator: AccumulatorType,
+    element: ValueType,
+    index: number
+  ) => AccumulatorType,
+  initialValue: AccumulatorType
+): AccumulatorType
+
+/**
+ * @internal
+ */
+export default function reduceRight(
+  object: any,
+  reducer: (accumulator: any, value: any, key: any) => any,
+  initialValue: any
+): any {
+  if (Array.isArray(object)) {
+    return object.reduceRight(reducer, initialValue)
   }
-  return val
+  const keys = Object.keys(object)
+  return keys.reduceRight((acc, key) => {
+    return reducer(acc, object[key], key)
+  }, initialValue)
 }
