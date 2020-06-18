@@ -23,7 +23,7 @@ export default function values<Input extends { [key: string]: any }>(
  * @category Collection
  * @public
  */
-export default function values<T>(obj: T[]): T[]
+export default function values<Type>(obj: Type[]): Type[]
 
 /**
  * Creates an array of the characters of a string.
