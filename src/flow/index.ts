@@ -2,24 +2,14 @@ type UnknownFn = (...params: unknown[]) => unknown
 type AnyFn = (...params: any[]) => any
 
 /**
- * Lets you perform a flow of function operations sequentially
- *
- * @param functions - The function operations that you want to perform on a given value
- * @returns A function that accepts an initial value to perform the above functions on
- *
- * @public
+ * @internal
  */
 export default function flow<First extends unknown, Output>(
   first: (val: First) => Output
 ): (val: First) => Output
 
 /**
- * Lets you perform a flow of function operations sequentially
- *
- * @param functions - The function operations that you want to perform on a given value
- * @returns A function that accepts an initial value to perform the above functions on
- *
- * @public
+ * @internal
  */
 export default function flow<First extends unknown, Second, Output>(
   first: (val: First) => Second,
@@ -27,12 +17,7 @@ export default function flow<First extends unknown, Second, Output>(
 ): (val: First) => Output
 
 /**
- * Lets you perform a flow of function operations sequentially
- *
- * @param functions - The function operations that you want to perform on a given value
- * @returns A function that accepts an initial value to perform the above functions on
- *
- * @public
+ * @internal
  */
 export default function flow<First extends unknown, Second, Third, Output>(
   first: (val: First) => Second,
@@ -41,12 +26,7 @@ export default function flow<First extends unknown, Second, Third, Output>(
 ): (val: First) => Output
 
 /**
- * Lets you perform a flow of function operations sequentially
- *
- * @param functions - The function operations that you want to perform on a given value
- * @returns A function that accepts an initial value to perform the above functions on
- *
- * @public
+ * @internal
  */
 export default function flow<
   First extends unknown,
@@ -62,12 +42,7 @@ export default function flow<
 ): (val: First) => Output
 
 /**
- * Lets you perform a flow of function operations sequentially
- *
- * @param functions - The function operations that you want to perform on a given value
- * @returns A function that accepts an initial value to perform the above functions on
- *
- * @public
+ * @internal
  */
 export default function flow<
   First extends unknown,
@@ -85,12 +60,7 @@ export default function flow<
 ): (val: First) => Output
 
 /**
- * Lets you perform a flow of function operations sequentially
- *
- * @param functions - The function operations that you want to perform on a given value
- * @returns A function that accepts an initial value to perform the above functions on
- *
- * @public
+ * @internal
  */
 export default function flow<
   First extends unknown,
@@ -110,12 +80,7 @@ export default function flow<
 ): (val: First) => Output
 
 /**
- * Lets you perform a flow of function operations sequentially
- *
- * @param functions - The function operations that you want to perform on a given value
- * @returns A function that accepts an initial value to perform the above functions on
- *
- * @public
+ * @internal
  */
 export default function flow<
   First extends unknown,
@@ -137,12 +102,7 @@ export default function flow<
 ): (val: First) => Output
 
 /**
- * Lets you perform a flow of function operations sequentially
- *
- * @param functions - The function operations that you want to perform on a given value
- * @returns A function that accepts an initial value to perform the above functions on
- *
- * @public
+ * @internal
  */
 export default function flow<
   First extends unknown,
@@ -166,12 +126,7 @@ export default function flow<
 ): (val: First) => Output
 
 /**
- * Lets you perform a flow of function operations sequentially
- *
- * @param functions - The function operations that you want to perform on a given value
- * @returns A function that accepts an initial value to perform the above functions on
- *
- * @public
+ * @internal
  */
 export default function flow<
   First extends unknown,
@@ -197,12 +152,7 @@ export default function flow<
 ): (val: First) => Output
 
 /**
- * Lets you perform a flow of function operations sequentially
- *
- * @param functions - The function operations that you want to perform on a given value
- * @returns A function that accepts an initial value to perform the above functions on
- *
- * @public
+ * @internal
  */
 export default function flow<
   First extends unknown,
@@ -230,12 +180,7 @@ export default function flow<
 ): (val: First) => Output
 
 /**
- * Lets you perform a flow of function operations sequentially
- *
- * @param functions - The function operations that you want to perform on a given value
- * @returns A function that accepts an initial value to perform the above functions on
- *
- * @public
+ * @internal
  */
 export default function flow(...fns: AnyFn[]): AnyFn
 
@@ -245,6 +190,7 @@ export default function flow(...fns: AnyFn[]): AnyFn
  * @param functions - The function operations that you want to perform on a given value
  * @returns A function that accepts an initial value to perform the above functions on
  *
+ * @category Util
  * @public
  */
 export default function flow(...fns: UnknownFn[]): UnknownFn {

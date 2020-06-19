@@ -25,4 +25,14 @@ describe('flow', () => {
     expectType<string>(result)
     assert.equal(result, 'number: 23')
   })
+
+  it('throws on giving an incorrect type', () => {
+    const fn = flow(
+      // @ts-expect-error
+      (x) => x.repeat(3),
+      (y) => y.toUpperCase()
+    )
+
+    assert.throws(fn(123))
+  })
 })
