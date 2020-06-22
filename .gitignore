@@ -3,3 +3,4 @@ node_modules
 /docs
 /.envrc
 /secrets
+/src/index.ts
