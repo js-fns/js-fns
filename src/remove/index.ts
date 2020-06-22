@@ -1,3 +1,7 @@
+type ElementType<ArrayType extends any[]> = ArrayType extends Array<infer Type>
+  ? Type
+  : never
+
 /**
  * Creates an array without the given element.
  *
@@ -7,9 +11,9 @@
  * @category Array
  * @public
  */
-export default function remove<ElementType>(
-  array: ElementType[],
-  element: ElementType
-) {
-  return array.filter((i) => i !== element)
+export default function remove<ArrayType extends Array<unknown>>(
+  array: ArrayType,
+  element: ElementType<ArrayType>
+): ArrayType {
+  return array.filter((el) => el !== element) as ArrayType
 }

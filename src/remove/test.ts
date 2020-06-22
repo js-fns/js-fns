@@ -1,5 +1,6 @@
 import assert from 'assert'
 import remove from '.'
+import { expectType } from '../../test/utils'
 
 describe('remove', function () {
   const array = ['with', 'or', 'without', 'you']
@@ -7,6 +8,12 @@ describe('remove', function () {
   it('removes the given element from the array', function () {
     const result = remove(array, 'with')
     assert.deepEqual(result, ['or', 'without', 'you'])
+  })
+
+  it('infers type from the array', () => {
+    // @ts-expect-error
+    const result = remove([1, 2, 3], undefined)
+    expectType<number[]>(result)
   })
 
   it('returns the same array if the given element is not found', () => {
