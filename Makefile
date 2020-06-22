@@ -28,6 +28,7 @@ test-cross-browser:
 
 build:
 	@rm -rf lib
+	@${BIN}/ts-node scripts/buildIndex.ts
 	@env BABEL_ENV=commonjs ${BIN}/babel src --source-root src --out-dir lib --extensions .ts --out-file-extension .js --ignore "src/**/test.ts" --quiet
 	@env BABEL_ENV=esm ${BIN}/babel src --source-root src --out-dir lib --extensions .ts --out-file-extension .mjs --ignore "src/**/test.ts" --quiet
 	@${BIN}/tsc --project tsconfig.lib.json
