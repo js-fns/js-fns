@@ -6,7 +6,7 @@ describe('sample', function () {
 
   it('returns random element from the given array', function () {
     const result = sample(array)
-    assert(array.indexOf(result) !== -1)
+    assert(typeof result === 'number' && array.indexOf(result) !== -1)
   })
 
   it('returns undefined if the array is empty', function () {
