@@ -1,22 +1,12 @@
+import { Values } from '../values'
+
 /**
- * Checks if an array is empty or not.
- *
- * @param array - The array to check for
- * @returns A boolean If the given array is empty or not
- *
- * @category Collection
- * @public
+ * @internal
  */
 export default function isEmpty<Type>(val: Type[]): boolean
 
 /**
- * Checks if an object is empty or not.
- *
- * @param object - The object to check for
- * @returns A boolean If the given object is empty or not
- *
- * @category Lang
- * @public
+ * @internal
  */
 export default function isEmpty<Type extends { [key: string]: any }>(
   val: Type
@@ -25,9 +15,68 @@ export default function isEmpty<Type extends { [key: string]: any }>(
 /**
  * @internal
  */
-export default function isEmpty(val: any): boolean {
-  if (Array.isArray(val)) {
+export default function isEmpty(val?: undefined | null): boolean
+
+/**
+ * @internal
+ */
+export default function isEmpty(val: number): boolean
+
+/**
+ * @internal
+ */
+export default function isEmpty(val: string): boolean
+
+/**
+ * @internal
+ */
+export default function isEmpty(val: RegExp): boolean
+
+/**
+ * @internal
+ */
+export default function isEmpty<Key, Value>(val: Map<Key, Value>): boolean
+
+/**
+ * @internal
+ */
+export default function isEmpty<Type>(val: Set<Type>): boolean
+
+/**
+ * @internal
+ */
+export default function isEmpty(val: symbol): boolean
+
+/**
+ * @internal
+ */
+export default function isEmpty(val: Buffer): boolean
+
+/**
+ * Checks if a given value is empty or not.
+ *
+ * @param value - The value to check for
+ * @returns A boolean If the given value is empty or not
+ *
+ * @category Lang
+ * @public
+ */
+export default function isEmpty(val?: any): boolean {
+  if (typeof val === 'undefined' || val === null) {
+    return true
+  }
+  if (
+    val instanceof RegExp ||
+    typeof val === 'number' ||
+    typeof val === 'symbol'
+  ) {
+    return true
+  }
+  if (Array.isArray(val) || typeof val === 'string' || val instanceof Buffer) {
     return !val.length
+  }
+  if (val instanceof Map || val instanceof Set) {
+    return !val.size
   }
   return !Object.keys(val).length
 }
