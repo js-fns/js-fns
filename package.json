@@ -1,7 +1,7 @@
 {
   "name": "smolxxh",
   "version": "0.1.0",
-  "description": "Smol xxHash implementation",
+  "description": "Tiny xxHash JS implementation",
   "type": "module",
   "main": "index.cjs",
   "module": "index.js",
