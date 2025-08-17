@@ -1,0 +1,60 @@
+{
+  "name": "smolcanon",
+  "version": "0.1.0",
+  "description": "Tiny JS objects canonicalization for hashing",
+  "type": "module",
+  "main": "index.cjs",
+  "module": "index.js",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "require": {
+        "types": "./index.d.cts",
+        "default": "./index.cjs"
+      },
+      "import": {
+        "types": "./index.d.ts",
+        "default": "./index.js"
+      }
+    }
+  },
+  "scripts": {
+    "test": "vitest run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kossnocorp/smolcanon.git"
+  },
+  "keywords": [
+    "tiny",
+    "hashing",
+    "canonicalization",
+    "serialization"
+  ],
+  "author": "Sasha Koss <koss@nocorp.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kossnocorp/smolcanon/issues"
+  },
+  "homepage": "https://github.com/kossnocorp/smolcanon#readme",
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.16.4",
+    "@babel/cli": "^7.28.3",
+    "@babel/core": "^7.28.3",
+    "@babel/plugin-transform-modules-commonjs": "^7.27.1",
+    "@babel/preset-env": "^7.28.3",
+    "@babel/preset-typescript": "^7.27.1",
+    "@parcel/watcher": "^2.5.1",
+    "@swc/core": "^1.13.3",
+    "@types/xxhashjs": "^0.2.4",
+    "babel-plugin-replace-import-extension": "^1.1.5",
+    "bytes-iec": "^3.1.1",
+    "glob": "^10.4.5",
+    "minimatch": "^10.0.3",
+    "picocolors": "^1.1.1",
+    "tsx": "^4.20.4",
+    "typescript": "^5.9.2",
+    "vitest": "^1.6.1"
+  },
+  "packageManager": "pnpm@10.14.0+sha512.ad27a79641b49c3e481a16a805baa71817a04bbe06a38d17e60e2eaee83f6a146c6a688125f5792e48dd5ba30e7da52a5cda4c3992b9ccf333f9ce223af84748"
+}
