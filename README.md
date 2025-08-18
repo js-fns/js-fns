@@ -4,7 +4,7 @@ Tiny JS values canonicalization for hashing.
 
 It uses a simple serialization algorithm, generating a consistent string representation of JS values. It is built to use with [Smol xxHash](https://github.com/kossnocorp/smolxxh).
 
-It is tiny and efficient. It is just `164B` and 30%+ faster than other stable serialization libraries.
+It is tiny and efficient. It is just `185B` and 30%+ faster than other stable serialization libraries.
 
 Unlike alternatives, it is focused on hashing and doesn't produce valid JSON, making it more efficient, and also supports more value types, i.e., `undefined`.
 
