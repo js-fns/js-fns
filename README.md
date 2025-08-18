@@ -1,32 +1,41 @@
-# Smol xxHash
+# Smol Canon
 
-Tiny [xxHash](https://xxhash.com/) JS implementation.
+Tiny JS values canonicalization for hashing.
 
-It is a modern, faster and smaller alternative to [xxhashjs](https://www.npmjs.com/package/xxhashjs) package. It is 3.8x faster and fits in just `381B`.
+It uses a simple serialization algorithm, generating a consistent string representation of JS values. It is built to use with [Smol xxHash](https://github.com/kossnocorp/smolxxh).
 
-It is just 1.8x slower than [xxhash-wasm](https://www.npmjs.com/package/xxhash-wasm) package.
+It is tiny and efficient. It is just `164B` and faster than other stable serialization libraries. Unlike alternatives, it is focused on hashing and doesn't produce valid JSON, making it more efficient, and also supports more value types, i.e., `undefined`.
 
 It features dual CJS/ESM support and built-in TypeScript definitions.
-
-It is based on [a reference C implementation](https://github.com/easyaspi314/xxhash-clean/blob/86a04ab3f01277049a23f6c9e2c4a6c174ff50c4/xxhash32-ref.c)
 
 ## Installation
 
 The package is available on npm:
 
 ```sh
-npm install smolxxh
+npm install smolcanon
 ```
 
 ## Usage
 
-Pass `Buffer` or `Uint8Array` to `xxh32` function to get the hash of the content:
+Pass any JS value to the `canonize` function to get its string representation:
 
 ```ts
+import { canonize } from "smolcanon";
+
+const canon = canonize({ foo: "bar", baz: "qux" });
+// => '{foo:"bar";baz:"qux"}'
+```
+
+You can use it with [Smol xxHash](https://github.com/kossnocorp/smolxxh) to produce consistent hashes for your data:
+
+```ts
+import { canonize } from "smolcanon";
 import { xxh32 } from "smolxxh";
 
-xxh32(Buffer.from("hello world", "utf8")).toString(16);
-// => 0x31b7405d
+const canon = canonize({ foo: "bar", baz: "qux" });
+const hash = xxh32(Buffer.from("hello world", "utf8")).toString(16);
+//=> "ed4e5029"
 ```
 
 ## Changelog
