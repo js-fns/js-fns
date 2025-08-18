@@ -1,11 +1,11 @@
-import { minify, transform } from "@swc/core";
-import { readFile } from "fs/promises";
 import watcher from "@parcel/watcher";
-import { relative } from "path";
-import { createBrotliCompress, constants } from "node:zlib";
-import { Readable } from "stream";
+import { minify, transform } from "@swc/core";
 import bytes from "bytes-iec";
+import { readFile } from "fs/promises";
+import { constants, createBrotliCompress } from "node:zlib";
+import { relative } from "path";
 import picocolors from "picocolors";
+import { Readable } from "stream";
 
 const { blue, green, gray, red } = picocolors;
 
@@ -37,9 +37,11 @@ let lastSize;
 async function measure() {
   const code = await readFile(srcPath, "utf-8");
   const processedCode = srcPath.endsWith(".ts")
-    ? await transform(code, {
-        jsc: { target: "esnext", parser: { syntax: "typescript" } },
-      })
+    ? (
+        await transform(code, {
+          jsc: { target: "esnext", parser: { syntax: "typescript" } },
+        })
+      ).code
     : code;
 
   minify(processedCode, {

@@ -1,3 +1,7 @@
 {
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "debug.javascript.defaultRuntimeExecutable": {
+    "pwa-node": "/Users/koss/.local/share/mise/shims/node"
+  },
+  "python.defaultInterpreterPath": "/Users/koss/.local/share/mise/installs/python/3.9.22/bin/python"
 }

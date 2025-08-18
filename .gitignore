@@ -2,3 +2,5 @@
 node_modules/
 # Dist
 /lib/
+# macOS
+.DS_Store
