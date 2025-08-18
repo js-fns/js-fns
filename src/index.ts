@@ -10,15 +10,24 @@
  */
 export function canonize(input: unknown): string {
   if (typeof input !== "object" || !input) {
-    if (Object.is(input, -0)) return "-0";
-    if (typeof input === "string") return JSON.stringify(input);
+    // NOTE: Traditional approach is faster than `Object.is(input, -0)`
+    if (input === 0 && 1 / input === -Infinity) return "-0";
+    //  NOTE: Manual replacing is faster than `JSON.stringify`
+    if (typeof input === "string") return `"${input.replace(/"/g, '\\"')}"`;
     return String(input);
   }
 
   let canon = "";
-  for (const key of Object.keys(input).sort() as (keyof typeof input)[]) {
+  const isArray = Array.isArray(input);
+  // NOTE: Skipping sorting for arrays improves performance. We also tried
+  // using `for...in` loop for arrays but it didn't affect performance at all.
+  const keys = (
+    isArray ? Object.keys(input) : Object.keys(input).sort()
+  ) as (keyof typeof input)[];
+
+  for (const key of keys) {
     canon += `${key}:${canonize(input[key])};`;
   }
 
-  return Array.isArray(input) ? `[${canon}]` : `{${canon}}`;
+  return isArray ? `[${canon}]` : `{${canon}}`;
 }
