@@ -36,7 +36,7 @@ import { canonize } from "smolcanon";
 import { xxh32 } from "smolxxh";
 
 const canon = canonize({ foo: "bar", baz: "qux" });
-const hash = xxh32(Buffer.from("hello world", "utf8")).toString(16);
+const hash = xxh32(Buffer.from(canon, "utf8")).toString(16);
 //=> "ed4e5029"
 ```
 

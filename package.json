@@ -1,6 +1,6 @@
 {
   "name": "smolcanon",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Tiny JS objects canonicalization for hashing",
   "type": "module",
   "main": "index.cjs",
