@@ -6,39 +6,44 @@ test-watch:
 	@pnpm exec vitest
 
 types:
-	@pnpm exec tsc --noEmit
+	@pnpm exec tsc
 
 types-watch:
-	@pnpm exec tsc --noEmit --watch
+	@pnpm exec tsc --watch
 
-test-types: build 
-	@pnpm exec attw --pack lib
+test-types: build
+	@cd dist && pnpm pack --out ../tmp/pkg.tgz
+	@pnpm exec attw ./tmp/pkg.tgz
 
 bench:
 	pnpm exec tsx benchmark.ts
 
+size:
+	@echo "========= xxh32 =========\n"
+	@node size.ts ./src/xxh32/index.ts
+
 build: prepare-build
-	@pnpm exec tsc -p tsconfig.lib.json 
-	@env BABEL_ENV=esm pnpm exec babel src --config-file ./babel.config.json --source-root src --out-dir lib --extensions .js,.ts --out-file-extension .js --quiet
-	@env BABEL_ENV=cjs pnpm exec babel src --config-file ./babel.config.json --source-root src --out-dir lib --extensions .js,.ts --out-file-extension .cjs --quiet
-	@node copy.mjs
+	@pnpm exec tsc --project tsconfig.dist.json
+	@env BABEL_ENV=esm pnpm exec babel src --config-file ./babel.config.json --source-root src --out-dir dist --extensions .js,.ts --out-file-extension .js --quiet
+	@env BABEL_ENV=cjs pnpm exec babel src --config-file ./babel.config.json --source-root src --out-dir dist --extensions .js,.ts --out-file-extension .cjs --quiet
+	@node copy.ts
 	@make build-cts
-	
+
 build-cts:
-	@find lib -name '*.d.ts' | while read file; do \
+	@find dist -name '*.d.ts' | while read file; do \
 		new_file=$${file%.d.ts}.d.cts; \
 		cp $$file $$new_file; \
 	done
 
 prepare-build:
-	@rm -rf lib
-	@mkdir -p lib
+	@rm -rf dist
+	@mkdir -p dist
 
 publish: build
-	cd lib && pnpm publish --access public
+	cd dist && pnpm publish --access public
 
 publish-next: build
-	cd lib && pnpm publish --access public --tag next
+	cd dist && pnpm publish --access public --tag next
 
 link:
-	@cd lib && pnpm link
+	@cd dist && pnpm link

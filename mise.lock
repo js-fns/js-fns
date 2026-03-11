@@ -65,33 +65,33 @@ checksum = "sha256:654be595baed57b6ed7747cc8813f505d55daad84458fe1f744d592d937fa
 url = "https://github.com/anomalyco/opencode/releases/download/v1.2.24/opencode-windows-x64.zip"
 
 [[tools.pnpm]]
-version = "10.29.3"
+version = "10.32.1"
 backend = "aqua:pnpm/pnpm"
 
 [tools.pnpm."platforms.linux-arm64"]
-checksum = "sha256:ae70208882b2c5229e143de2454fc4f778b2d2ae959a2e48ec76a6c26e8b3127"
-url = "https://github.com/pnpm/pnpm/releases/download/v10.29.3/pnpm-linux-arm64"
+checksum = "sha256:c0db0b837971fde6f9781af8914e54eb163721193a36d35cbcf1794b3474a407"
+url = "https://github.com/pnpm/pnpm/releases/download/v10.32.1/pnpm-linux-arm64"
 
 [tools.pnpm."platforms.linux-arm64-musl"]
-checksum = "sha256:ae70208882b2c5229e143de2454fc4f778b2d2ae959a2e48ec76a6c26e8b3127"
-url = "https://github.com/pnpm/pnpm/releases/download/v10.29.3/pnpm-linux-arm64"
+checksum = "sha256:c0db0b837971fde6f9781af8914e54eb163721193a36d35cbcf1794b3474a407"
+url = "https://github.com/pnpm/pnpm/releases/download/v10.32.1/pnpm-linux-arm64"
 
 [tools.pnpm."platforms.linux-x64"]
-checksum = "sha256:2fc98db127c611be0c110af11b5b72759f7d736893dddc81df73b7b59b30f15a"
-url = "https://github.com/pnpm/pnpm/releases/download/v10.29.3/pnpm-linux-x64"
+checksum = "sha256:c5607a86bfb948297e96b393a53c90107766fe56329e62967b1f239d861d4363"
+url = "https://github.com/pnpm/pnpm/releases/download/v10.32.1/pnpm-linux-x64"
 
 [tools.pnpm."platforms.linux-x64-musl"]
-checksum = "sha256:2fc98db127c611be0c110af11b5b72759f7d736893dddc81df73b7b59b30f15a"
-url = "https://github.com/pnpm/pnpm/releases/download/v10.29.3/pnpm-linux-x64"
+checksum = "sha256:c5607a86bfb948297e96b393a53c90107766fe56329e62967b1f239d861d4363"
+url = "https://github.com/pnpm/pnpm/releases/download/v10.32.1/pnpm-linux-x64"
 
 [tools.pnpm."platforms.macos-arm64"]
-checksum = "sha256:a248c56b0ab20443e18d0c8ee3207c6c564ee342bd3fc8694b3569a060cecece"
-url = "https://github.com/pnpm/pnpm/releases/download/v10.29.3/pnpm-macos-arm64"
+checksum = "sha256:b0904b4e0cf36704fcdc24bcdb5f03388799a631510d1fb0d459ea69c7b1e2d9"
+url = "https://github.com/pnpm/pnpm/releases/download/v10.32.1/pnpm-macos-arm64"
 
 [tools.pnpm."platforms.macos-x64"]
-checksum = "sha256:569877025e8894d88b1756fdbc0675330dfcd9c01ece4ab26685baafffa8e303"
-url = "https://github.com/pnpm/pnpm/releases/download/v10.29.3/pnpm-macos-x64"
+checksum = "sha256:8b83277343bbc400fdb90608bd51b4f56e380e6624ac5fd0e11d6c08815e3f04"
+url = "https://github.com/pnpm/pnpm/releases/download/v10.32.1/pnpm-macos-x64"
 
 [tools.pnpm."platforms.windows-x64"]
-checksum = "sha256:51a217ad98e138a346da4a43c81bbc64a8ba6df7e2afa7bf5456a163f9105635"
-url = "https://github.com/pnpm/pnpm/releases/download/v10.29.3/pnpm-win-x64.exe"
+checksum = "sha256:849141504c83bcd08a3d84dc20d43cff2584d672138d28c33ad62bdac809e7f2"
+url = "https://github.com/pnpm/pnpm/releases/download/v10.32.1/pnpm-win-x64.exe"

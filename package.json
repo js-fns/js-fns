@@ -2,54 +2,62 @@
   "name": "smolxxh",
   "version": "0.1.0",
   "description": "Tiny xxHash JS implementation",
+  "keywords": [
+    "browser",
+    "csv",
+    "tiny",
+    "web workers",
+    "workers"
+  ],
+  "homepage": "https://github.com/kossnocorp/smolxxh#readme",
+  "bugs": {
+    "url": "https://github.com/kossnocorp/smolxxh/issues"
+  },
+  "license": "MIT",
+  "author": "Sasha Koss <koss@nocorp.me>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kossnocorp/smolxxh.git"
+  },
   "type": "module",
   "main": "index.cjs",
   "module": "index.js",
+  "types": "./index.d.ts",
   "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "require": {
-        "types": "./index.d.cts",
-        "default": "./index.cjs"
+    ".": "./src/index.ts",
+    "./xxh32": "./src/xxh32/index.ts",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "require": {
+          "types": "./index.d.cts",
+          "default": "./index.cjs"
+        },
+        "import": {
+          "types": "./index.d.ts",
+          "default": "./index.js"
+        }
       },
-      "import": {
-        "types": "./index.d.ts",
-        "default": "./index.js"
-      }
-    },
-    "./xxh32": {
-      "require": {
-        "types": "./xxh32/index.d.cts",
-        "default": "./xxh32/index.cjs"
+      "./xxh32": {
+        "require": {
+          "types": "./xxh32/index.d.cts",
+          "default": "./xxh32/index.cjs"
+        },
+        "import": {
+          "types": "./xxh32/index.d.ts",
+          "default": "./xxh32/index.js"
+        }
       },
-      "import": {
-        "types": "./xxh32/index.d.ts",
-        "default": "./xxh32/index.js"
-      }
+      "./package.json": "./package.json"
     }
   },
   "scripts": {
     "test": "vitest run"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kossnocorp/smolxxh.git"
-  },
-  "keywords": [
-    "tiny",
-    "csv",
-    "browser",
-    "workers",
-    "web workers"
-  ],
-  "author": "Sasha Koss <koss@nocorp.me>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/kossnocorp/smolxxh/issues"
-  },
-  "homepage": "https://github.com/kossnocorp/smolxxh#readme",
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.16.2",
+    "@arethetypeswrong/cli": "^0.18.2",
     "@babel/cli": "^7.24.1",
     "@babel/core": "^7.24.4",
     "@babel/plugin-transform-modules-commonjs": "^7.24.1",
@@ -57,18 +65,21 @@
     "@babel/preset-typescript": "^7.24.1",
     "@parcel/watcher": "^2.4.1",
     "@swc/core": "^1.4.13",
+    "@types/node": "^25.4.0",
     "@types/xxhashjs": "^0.2.4",
     "babel-plugin-replace-import-extension": "^1.1.4",
     "benny": "^3.7.1",
     "bytes-iec": "^3.1.1",
     "glob": "^10.3.12",
     "minimatch": "^10.0.1",
+    "oxfmt": "^0.38.0",
+    "oxlint": "^1.53.0",
+    "oxlint-tsgolint": "^0.16.0",
     "picocolors": "^1.0.0",
-    "tsx": "^4.19.3",
-    "typescript": "^5.5.4",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
     "vitest": "^1.4.0",
     "xxhash-wasm": "^1.1.0",
     "xxhashjs": "^0.2.2"
-  },
-  "packageManager": "pnpm@9.10.0+sha512.73a29afa36a0d092ece5271de5177ecbf8318d454ecd701343131b8ebc0c1a91c487da46ab77c8e596d6acf1461e3594ced4becedf8921b074fbd8653ed7051c"
+  }
 }

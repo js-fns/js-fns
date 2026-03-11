@@ -1,1 +1,1 @@
-export * from "./xxh32/index.ts";
+export * from "./xxh32/index.js";

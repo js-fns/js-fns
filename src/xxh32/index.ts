@@ -84,7 +84,7 @@ export function xxh32(input: Buffer, seed: number = 0): number {
  * @returns Rotated number.
  */
 function rotate32(value: number, shift: number): number {
-  return ((value << shift % 32) | (value >>> (32 - (shift % 32)))) >>> 0;
+  return ((value << (shift % 32)) | (value >>> (32 - (shift % 32)))) >>> 0;
 }
 
 /**

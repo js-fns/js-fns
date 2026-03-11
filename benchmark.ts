@@ -1,13 +1,13 @@
 import b from "benny";
 import loadXxhashWasm from "xxhash-wasm";
 import xxhashjs from "xxhashjs";
-import { xxh32 } from "./src/index.ts";
+import { xxh32 } from "./src/index.js";
 
 const xxhashWasm = await loadXxhashWasm();
 
 const data = genData(101);
 
-b.suite(
+await b.suite(
   "XXH32",
 
   b.add("xxhashjs", () => {
@@ -23,7 +23,7 @@ b.suite(
   }),
 
   b.cycle(),
-  b.complete()
+  b.complete(),
 );
 
 function genData(size: number) {
