@@ -1,9 +1,12 @@
 [tools]
-## Stack
-node = { version = "lts", postinstall = "corepack enable && node -v > .nvmrc" }
+# Stack
+node = { version = "lts", postinstall = "node -v > .nvmrc" }
+pnpm = "latest"
+
+# Utils
+opencode = "latest"
 
 [settings]
-# Enable extra features
-experimental = true
-# Ignore idiomatic version files
-idiomatic_version_file_enable_tools = []
+lockfile = true # Enable lock file
+experimental = true # Extra features
+idiomatic_version_file_enable_tools = [] # Ignore .nvmrc and others
