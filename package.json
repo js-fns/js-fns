@@ -26,6 +26,7 @@
   "exports": {
     ".": "./src/index.ts",
     "./xxh32": "./src/xxh32/index.ts",
+    "./xxh64": "./src/xxh64/index.ts",
     "./package.json": "./package.json"
   },
   "publishConfig": {
@@ -48,6 +49,16 @@
         "import": {
           "types": "./xxh32/index.d.ts",
           "default": "./xxh32/index.js"
+        }
+      },
+      "./xxh64": {
+        "require": {
+          "types": "./xxh64/index.d.cts",
+          "default": "./xxh64/index.cjs"
+        },
+        "import": {
+          "types": "./xxh64/index.d.ts",
+          "default": "./xxh64/index.js"
         }
       },
       "./package.json": "./package.json"
