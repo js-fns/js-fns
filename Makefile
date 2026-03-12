@@ -21,6 +21,8 @@ bench:
 size:
 	@echo "========= xxh32 =========\n"
 	@node size.ts ./src/xxh32/index.ts
+	@echo "========= xxh64 =========\n"
+	@node size.ts ./src/xxh64/index.ts
 
 build: prepare-build
 	@pnpm exec tsc --project tsconfig.dist.json

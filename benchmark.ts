@@ -1,7 +1,7 @@
 import b from "benny";
 import loadXxhashWasm from "xxhash-wasm";
 import xxhashjs from "xxhashjs";
-import { xxh32 } from "./src/index.js";
+import { xxh32, xxh64 } from "./src/index.js";
 
 const xxhashWasm = await loadXxhashWasm();
 
@@ -20,6 +20,25 @@ await b.suite(
 
   b.add("smolxxh", () => {
     xxh32(data, 0);
+  }),
+
+  b.cycle(),
+  b.complete(),
+);
+
+await b.suite(
+  "XXH64",
+
+  b.add("xxhashjs", () => {
+    xxhashjs.h64(data, 0);
+  }),
+
+  b.add("xxhash-wasm", async () => {
+    xxhashWasm.h64Raw(data, 0n);
+  }),
+
+  b.add("smolxxh", () => {
+    xxh64(data, 0n);
   }),
 
   b.cycle(),
