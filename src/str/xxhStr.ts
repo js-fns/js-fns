@@ -3,9 +3,9 @@
  */
 export namespace xxhStr {
   /**
-   * Represents a value that can be implicitly coerced to a string.
+   * Represents a value that can be explicitly coerced to a string.
    */
-  export type Input =
+  export type StringLike =
     | string
     | { valueOf(): string }
     | { [Symbol.toPrimitive](hint: "string"): string };

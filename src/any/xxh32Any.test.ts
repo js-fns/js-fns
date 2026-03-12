@@ -24,8 +24,15 @@ describe("xxh32Any", () => {
     expect(xxh32Any(-0)).toBe(xxh32Str("-0"));
   });
 
-  it("supports custom encoding", () => {
-    expect(xxh32Any("cafebabe", "hex")).toBe("2cc5d05");
-    expect(xxh32Any("cafebabe", "hex")).not.toBe(xxh32Str("cafebabe"));
+  it("allows to infer return type as a branded string", () => {
+    type Branded = string & { __brand: "xxh32" };
+    const _hash: Branded = xxh32Any("hello world");
+
+    const _obj: Record<string, Branded> = {
+      hello: xxh32Any("hello world"),
+    };
+
+    const fn = (_input: Branded) => {};
+    fn(xxh32Any("hello world"));
   });
 });

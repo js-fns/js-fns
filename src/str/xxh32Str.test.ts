@@ -20,4 +20,8 @@ describe("xxh32Str", () => {
     expect(xxh32Str("cafebabe", "hex")).toBe("408e9853");
     expect(xxh32Str("cafebabe", "hex")).not.toBe(xxh32Str("cafebabe"));
   });
+  it("allows to infer return type as a branded string", () => {
+    type Branded = string & { __brand: "xxh32" };
+    const _hash: Branded = xxh32Str("hello world");
+  });
 });

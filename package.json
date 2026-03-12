@@ -1,6 +1,6 @@
 {
   "name": "smolxxh",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Tiny xxHash JS implementation",
   "keywords": [
     "hashing",

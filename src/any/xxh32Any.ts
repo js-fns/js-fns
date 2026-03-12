@@ -11,13 +11,9 @@ import { xxh32 } from "../xxh32.js";
  * Make sure to install `smolcanon` package as it is not listed as a dependency.
  *
  * @param input - Value to hash.
- * @param encoding - Encoding to use. Defaults to "utf8".
  *
  * @returns The computed 32-bit hash as a hexadecimal string.
  */
-export function xxh32Any(
-  input: unknown,
-  encoding: BufferEncoding = "utf8",
-): string {
-  return xxh32(Buffer.from(canonize(input), encoding)).toString(16);
+export function xxh32Any<Type extends string>(input: unknown): Type {
+  return xxh32(Buffer.from(canonize(input))).toString(16) as Type;
 }

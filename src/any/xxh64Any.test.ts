@@ -24,8 +24,15 @@ describe("xxh64Any", () => {
     expect(xxh64Any(-0)).toBe(xxh64Str("-0"));
   });
 
-  it("supports custom encoding", () => {
-    expect(xxh64Any("cafebabe", "hex")).toBe("ef46db3751d8e999");
-    expect(xxh64Any("cafebabe", "hex")).not.toBe(xxh64Str("cafebabe"));
+  it("allows to infer return type as a branded string", () => {
+    type Branded = string & { __brand: "xxh64" };
+    const _hash: Branded = xxh64Any("hello world");
+
+    const _obj: Record<string, Branded> = {
+      hello: xxh64Any("hello world"),
+    };
+
+    const fn = (_input: Branded) => {};
+    fn(xxh64Any("hello world"));
   });
 });

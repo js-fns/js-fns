@@ -20,4 +20,9 @@ describe("xxh64Str", () => {
     expect(xxh64Str("cafebabe", "hex")).toBe("28140923537eaba8");
     expect(xxh64Str("cafebabe", "hex")).not.toBe(xxh64Str("cafebabe"));
   });
+
+  it("allows to infer return type as a branded string", () => {
+    type Branded = string & { __brand: "xxh64" };
+    const _hash: Branded = xxh64Str("hello world");
+  });
 });

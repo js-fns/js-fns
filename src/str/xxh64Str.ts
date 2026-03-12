@@ -2,19 +2,20 @@ import { xxh64 } from "../xxh64.js";
 import type { xxhStr } from "./xxhStr.js";
 
 /**
- * Computes the 64-bit xxHashof a stringifiable value.
+ * Computes the 64-bit xxHash of a string-like value.
  *
  * Just like `Buffer.from`, it accepts any value that can be implicitly coerced
- * to a string.
+ * to a string as well as an optional encoding parameter to specify how
+ * the input string should be interpreted.
  *
  * @param input - Value to hash.
- * @param encoding - Encoding to use. Defaults to "utf8".
+ * @param encoding - Encoding to use when interpreting `input`. Defaults to `"utf8"`.
  *
  * @returns The computed 64-bit hash as a hexadecimal string.
  */
-export function xxh64Str(
-  input: xxhStr.Input,
+export function xxh64Str<Type extends string>(
+  input: xxhStr.StringLike,
   encoding: BufferEncoding = "utf8",
-): string {
-  return xxh64(Buffer.from(input, encoding)).toString(16);
+): Type {
+  return xxh64(Buffer.from(input, encoding)).toString(16) as Type;
 }

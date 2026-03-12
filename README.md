@@ -38,7 +38,10 @@ xxh64(Buffer.from("hello world", "utf8")).toString(16);
 
 Smol xxHash comes with a set of helper functions helping to reduce boilerplate when hashing strings and JS values.
 
-### String Values
+- [String hashing with `xxh32Str` and `xxh64Str`](#string-hashing)
+- [Any JS value hashing with `xxh32Any` and `xxh64Any`](#any-js-value-hashing)
+
+#### String Hashing
 
 To quickly hash string values, you can use the `xxh32Str` and `xxh64Str` helpers:
 
@@ -57,13 +60,27 @@ It supports any string as well as objects implementing `toString` and `[Symbol.t
 You also can pass encoding as the second argument, which defaults to `utf8`:
 
 ```ts
-import { xxh32Str } from "smolxxh/str";
-
 xxh32Str("cafebabe", "hex");
 // => "408e9853"
+
+xxh32Str("cafebabe");
+// => "f6a25a07"
 ```
 
-### JS Values
+Both `xxh32Str` and `xxh64Str` infer the return type, so you can use it with branded strings without explicitly casting the result:
+
+```ts
+type UserHash = string & { [userHashBrand]: true };
+declare const userHashBrand: unique symbol;
+
+// No type error!
+const userHash: UserHash = xxh32Str(user);
+
+// Can pass the generic type parameter too:
+callback(xxh32Str<UserHash>(user));
+```
+
+#### Any JS Value Hashing
 
 To consistently hash any JS value, including objects, they must be canonized first.
 
@@ -87,6 +104,19 @@ xxh64Any(null);
 //=> "3ec9e10063179f3a"
 xxh64Any(NaN);
 //=> "bada388f33705db6"
+```
+
+Both `xxh32Any` and `xxh64Any` infer the return type, so you can use it with branded strings without explicitly casting the result:
+
+```ts
+type UserHash = string & { [userHashBrand]: true };
+declare const userHashBrand: unique symbol;
+
+// No type error!
+const userHash: UserHash = xxh32Any(user);
+
+// Can pass the generic type parameter too:
+callback(xxh64Any<UserHash>(user));
 ```
 
 To use the `xxh32Any` and `xxh64Any` helpers, you need to have the `smolcanon` package installed in your project, as they depend on it for canonization:
