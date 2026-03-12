@@ -1,13 +1,13 @@
 {
   "name": "smolxxh",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Tiny xxHash JS implementation",
   "keywords": [
-    "browser",
-    "csv",
-    "tiny",
-    "web workers",
-    "workers"
+    "hashing",
+    "xxh",
+    "xxh32",
+    "xxh64",
+    "xxhash"
   ],
   "homepage": "https://github.com/kossnocorp/smolxxh#readme",
   "bugs": {
@@ -25,8 +25,14 @@
   "types": "./index.d.ts",
   "exports": {
     ".": "./src/index.ts",
-    "./xxh32": "./src/xxh32/index.ts",
-    "./xxh64": "./src/xxh64/index.ts",
+    "./xxh32": "./src/xxh32.ts",
+    "./xxh64": "./src/xxh64.ts",
+    "./str": "./src/str/index.ts",
+    "./str/xxh32Str": "./src/str/xxh32Str.ts",
+    "./str/xxh64Str": "./src/str/xxh64Str.ts",
+    "./any": "./src/any/index.ts",
+    "./any/xxh32Any": "./src/any/xxh32Any.ts",
+    "./any/xxh64Any": "./src/any/xxh64Any.ts",
     "./package.json": "./package.json"
   },
   "publishConfig": {
@@ -43,22 +49,82 @@
       },
       "./xxh32": {
         "require": {
-          "types": "./xxh32/index.d.cts",
-          "default": "./xxh32/index.cjs"
+          "types": "./xxh32.d.cts",
+          "default": "./xxh32.cjs"
         },
         "import": {
-          "types": "./xxh32/index.d.ts",
-          "default": "./xxh32/index.js"
+          "types": "./xxh32.d.ts",
+          "default": "./xxh32.js"
         }
       },
       "./xxh64": {
         "require": {
-          "types": "./xxh64/index.d.cts",
-          "default": "./xxh64/index.cjs"
+          "types": "./xxh64.d.cts",
+          "default": "./xxh64.cjs"
         },
         "import": {
-          "types": "./xxh64/index.d.ts",
-          "default": "./xxh64/index.js"
+          "types": "./xxh64.d.ts",
+          "default": "./xxh64.js"
+        }
+      },
+      "./str": {
+        "require": {
+          "types": "./str/index.d.cts",
+          "default": "./str/index.cjs"
+        },
+        "import": {
+          "types": "./str/index.d.ts",
+          "default": "./str/index.js"
+        }
+      },
+      "./str/xxh32Str": {
+        "require": {
+          "types": "./str/xxh32Str.d.cts",
+          "default": "./str/xxh32Str.cjs"
+        },
+        "import": {
+          "types": "./str/xxh32Str.d.ts",
+          "default": "./str/xxh32Str.js"
+        }
+      },
+      "./str/xxh64Str": {
+        "require": {
+          "types": "./str/xxh64Str.d.cts",
+          "default": "./str/xxh64Str.cjs"
+        },
+        "import": {
+          "types": "./str/xxh64Str.d.ts",
+          "default": "./str/xxh64Str.js"
+        }
+      },
+      "./any": {
+        "require": {
+          "types": "./any/index.d.cts",
+          "default": "./any/index.cjs"
+        },
+        "import": {
+          "types": "./any/index.d.ts",
+          "default": "./any/index.js"
+        }
+      },
+      "./any/xxh32Any": {
+        "require": {
+          "types": "./any/xxh32Any.d.cts",
+          "default": "./any/xxh32Any.cjs"
+        },
+        "import": {
+          "types": "./any/xxh32Any.d.ts",
+          "default": "./any/xxh32Any.js"
+        }
+      },
+      "./any/xxh64Any": {
+        "require": {
+          "types": "./any/xxh64Any.d.cts",
+          "default": "./any/xxh64Any.cjs"
+        },
+        "import": {
+          "types": "./any/xxh64Any.d.ts",
+          "default": "./any/xxh64Any.js"
         }
       },
       "./package.json": "./package.json"
@@ -87,6 +153,7 @@
     "oxlint": "^1.53.0",
     "oxlint-tsgolint": "^0.16.0",
     "picocolors": "^1.0.0",
+    "smolcanon": "^0.2.1",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "vitest": "^1.4.0",

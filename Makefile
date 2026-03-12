@@ -20,9 +20,17 @@ bench:
 
 size:
 	@echo "========= xxh32 =========\n"
-	@node size.ts ./src/xxh32/index.ts
+	@node size.ts ./src/xxh32.ts
 	@echo "========= xxh64 =========\n"
-	@node size.ts ./src/xxh64/index.ts
+	@node size.ts ./src/xxh64.ts
+	@echo "========= xxh32Str =========\n"
+	@node size.ts ./src/str/xxh32Str.ts
+	@echo "========= xxh64Str =========\n"
+	@node size.ts ./src/str/xxh64Str.ts
+	@echo "========= xxh32Any =========\n"
+	@node size.ts ./src/any/xxh32Any.ts
+	@echo "========= xxh64Any =========\n"
+	@node size.ts ./src/any/xxh64Any.ts
 
 build: prepare-build
 	@pnpm exec tsc --project tsconfig.dist.json

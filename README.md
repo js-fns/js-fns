@@ -20,6 +20,8 @@ npm install smolxxh
 
 ## Usage
 
+### Basics
+
 Pass `Buffer` or `Uint8Array` to the `xxh32`/`xxh64` function to get the hash of the content:
 
 ```ts
@@ -32,19 +34,65 @@ xxh64(Buffer.from("hello world", "utf8")).toString(16);
 // => "45ab6734b21e6968"
 ```
 
-### JS Object Hashing
+### Helpers
 
-To consistently hash JS objects, you need to canonize them first.
+Smol xxHash comes with a set of helper functions helping to reduce boilerplate when hashing strings and JS values.
 
-I recommend using [Smol Canon](https://github.com/kossnocorp/smolcanon) (from the same Smol family) for this purpose:
+### String Values
+
+To quickly hash string values, you can use the `xxh32Str` and `xxh64Str` helpers:
 
 ```ts
-import { canonize } from "smolcanon";
-import { xxh32 } from "smolxxh";
+import { xxh32Str, xxh64Str } from "smolxxh/str";
 
-const canon = canonize({ foo: "bar", baz: "qux" });
-const hash = xxh32(Buffer.from(canon, "utf8")).toString(16);
+xxh32Str("hello world");
+// => "cebb6622"
+
+xxh64Str("hello world");
+// => "45ab6734b21e6968"
+```
+
+It supports any string as well as objects implementing `toString` and `[Symbol.toPrimitive](hint: "string")` methods.
+
+You also can pass encoding as the second argument, which defaults to `utf8`:
+
+```ts
+import { xxh32Str } from "smolxxh/str";
+
+xxh32Str("cafebabe", "hex");
+// => "408e9853"
+```
+
+### JS Values
+
+To consistently hash any JS value, including objects, they must be canonized first.
+
+Smol xxHash comes with `xxh32Any` and `xxh64Any` helpers that utilize the [Smol Canon](https://github.com/kossnocorp/smolcanon) package to canonize the value before hashing it:
+
+```ts
+import { xxh32Any, xxh64Any } from "smolxxh/any";
+
+// Objects get canonized, so order doesn't matter:
+xxh32Any({ foo: "bar", baz: "qux" });
 //=> "ed4e5029"
+xxh32Any({ baz: "qux", foo: "bar" });
+//=> "ed4e5029"
+
+// Any JS value can be hashed
+xxh64Any([1, 2, 3]);
+//=> "bba91612761944c5"
+xxh64Any(undefined);
+//=> "6aeed7835f4984a3"
+xxh64Any(null);
+//=> "3ec9e10063179f3a"
+xxh64Any(NaN);
+//=> "bada388f33705db6"
+```
+
+To use the `xxh32Any` and `xxh64Any` helpers, you need to have the `smolcanon` package installed in your project, as they depend on it for canonization:
+
+```bash
+npm install smolcanon
 ```
 
 ## Changelog

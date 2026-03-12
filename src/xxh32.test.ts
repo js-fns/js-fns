@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { xxh32 } from "./index.js";
+import { xxh32 } from "./xxh32.js";
 
 describe("xxh32", () => {
   it("reference tests", () => {
