@@ -1,0 +1,41 @@
+{
+  "name": "js-fns",
+  "version": "3.0.0-alpha.0",
+  "description": "JavaScript functions",
+  "license": "MIT",
+  "author": "Sasha Koss <koss@nocorp.me>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kossnocorp/js-fns.git"
+  },
+  "type": "module",
+  "main": "index.cjs",
+  "module": "index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "require": {
+          "types": "./index.d.cts",
+          "default": "./index.cjs"
+        },
+        "import": {
+          "types": "./index.d.ts",
+          "default": "./index.js"
+        }
+      },
+      "./package.json": "./package.json"
+    },
+    "main": "index.cjs",
+    "module": "index.js",
+    "types": "./index.d.ts"
+  },
+  "devDependencies": {
+    "@js-fns/dev": "workspace:*",
+    "vitest": "^1.6.1"
+  }
+}

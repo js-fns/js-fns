@@ -1,0 +1,4 @@
+{
+  "extends": "@js-fns/dev/config/tsconfig",
+  "references": [{ "path": "../dev" }]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "@js-fns/dev",
+  "version": "0.1.0",
+  "description": "js-fns development tools",
+  "license": "MIT",
+  "author": "Sasha Koss <koss@nocorp.me>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kossnocorp/js-fns.git"
+  },
+  "bin": {
+    "jsd": "./src/bin.ts"
+  },
+  "files": [
+    "src"
+  ],
+  "type": "module",
+  "exports": {
+    "./config/tsconfig": "./config/tsconfig.json"
+  },
+  "dependencies": {
+    "rolldown": "^1.1.2",
+    "zx": "^8.8.5"
+  },
+  "devDependencies": {
+    "@types/node": "^25.4.0",
+    "oxfmt": "^0.38.0",
+    "typescript": "^5.9.3",
+    "vitest": "^1.6.1"
+  }
+}

@@ -1,0 +1,25 @@
+experimental_monorepo_root = true
+[monorepo]
+config_roots = ["pkgs/*"]
+
+[tools]
+node = "lts"
+pnpm = "latest"
+
+[settings]
+lockfile = true # Enable lock file
+
+[tasks.types]
+run = "pnpm exec tsc --build"
+
+[tasks."types:watch"]
+run = "pnpm exec tsc --build --watch"
+
+[tasks.format]
+run = "pnpm exec oxfmt"
+
+[tasks."format:check"]
+run = "pnpm exec oxfmt --check"
+
+[tasks.lint]
+run = "pnpm exec oxlint"

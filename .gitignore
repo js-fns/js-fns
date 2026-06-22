@@ -1,0 +1,10 @@
+# JS
+node_modules/
+# TS
+.ts/
+# Dist
+/dist/
+pkgs/*/dist/
+# Temp
+/tmp/
+pkgs/*/tmp/
