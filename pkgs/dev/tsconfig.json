@@ -2,6 +2,6 @@
   "extends": "./config/tsconfig.json",
   "compilerOptions": {
     // Env
-    "types": ["node"]
-  }
+    "types": ["node"],
+  },
 }

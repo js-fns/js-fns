@@ -1,0 +1,18 @@
+{
+  "name": "@js-fns/core-canon-bench",
+  "type": "module",
+  "devDependencies": {
+    "@js-fns/dev": "workspace:*",
+    "@types/node": "^25.4.0",
+    "canonicalize": "^3.0.0",
+    "fast-json-stable-stringify": "^2.1.0",
+    "fast-safe-stringify": "^2.1.1",
+    "fast-stable-stringify": "^1.0.0",
+    "js-fns": "workspace:*",
+    "json-canon": "^1.0.1",
+    "json-stable-stringify": "^1.3.0",
+    "json-stringify-deterministic": "^1.0.14",
+    "safe-stable-stringify": "^2.5.0",
+    "tinybench": "^6.0.2"
+  }
+}

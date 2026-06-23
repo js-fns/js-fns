@@ -7,8 +7,10 @@
     // TODO: Keep one of these:
     "${configDir}/test/**/*.ts",
     "${configDir}/tests/**/*.ts",
-    "${configDir}/package.json"
+    "${configDir}/data/**/*.json",
+    "${configDir}/package.json",
   ],
+  "exclude": ["${configDir}/src/**/*.pkg/**/*"],
   "compilerOptions": {
     // Resolve
     "rootDir": "${configDir}/.",
@@ -42,6 +44,6 @@
     // Build
     "incremental": true,
     // Project references
-    "composite": true
-  }
+    "composite": true,
+  },
 }
