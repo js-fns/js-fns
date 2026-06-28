@@ -53,4 +53,46 @@ bench.add("js-fns/canon", () => {
 await bench.run();
 
 console.log(bench.name);
-console.table(bench.table());
+
+if (process.env.DEBUG) {
+  console.table(bench.table());
+  process.exit(0);
+}
+
+const rows = Object.fromEntries(
+  bench.results
+    .map((result, idx) => {
+      const task = bench.tasks[idx];
+      if (!task) {
+        return {
+          Package: "???",
+          mean: 0,
+          moe: 0,
+        };
+      }
+
+      if (result.state !== "completed") {
+        return {
+          Package: task.name,
+          mean: 0,
+          moe: 0,
+        };
+      }
+
+      return {
+        Package: task.name,
+        mean: Math.round(result.throughput.mean),
+        moe: Math.round(result.throughput.moe),
+      };
+    })
+    .sort((a, b) => b.mean - a.mean)
+    .map((row, idx) => [
+      idx + 1,
+      {
+        Package: row.Package,
+        "ops/s": `${row.mean.toLocaleString()} ± ${row.moe.toLocaleString()}`,
+      },
+    ]),
+);
+
+console.table(rows);

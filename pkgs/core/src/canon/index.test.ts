@@ -220,8 +220,12 @@ describe("canonize", () => {
 
     describe("Custom class", () => {
       class Person {
+        // oxlint-disable-next-line no-unused-private-class-members -- We need it to test that private fields are not serialized
         #id: string;
-        constructor(public name: string, public age: number) {
+        constructor(
+          public name: string,
+          public age: number,
+        ) {
           this.#id = "private";
         }
         fn() {}
