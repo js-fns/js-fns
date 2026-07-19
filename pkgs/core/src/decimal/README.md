@@ -8,10 +8,16 @@ FixedDecimal is **just `0.5 kB`** and has no dependencies, while [`decimal.js`](
 
 ## Installation
 
-The library is available as an [npm package](https://www.npmjs.com/package/FixedDecimal):
+The package is available as a part of the `js-fns` collection on npm:
 
-```bash
-npm install FixedDecimal --save
+```sh
+npm install js-fns
+```
+
+It is also available as a standalone package:
+
+```sh
+npm install @js-fns/decimal
 ```
 
 ## Usage
@@ -19,7 +25,7 @@ npm install FixedDecimal --save
 The library exports the `FixedDecimal` class, which you can use to create decimal numbers:
 
 ```ts
-import { FixedDecimal } from "FixedDecimal";
+import { FixedDecimal } from "@js-fns/decimal";
 
 new FixedDecimal("0.1").add("0.2").toNumber();
 //=> 0.3
