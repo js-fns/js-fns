@@ -1,4 +1,4 @@
-import { TinyFloat } from "js-fns";
+import { FixedDecimal } from "js-fns";
 import { Bench } from "tinybench";
 import { Decimal } from "decimal.js";
 import currency from "currency.js";
@@ -6,15 +6,15 @@ import currency from "currency.js";
 const x = "5032485723458348569331745.33434346346912144534543";
 const y = "0.046875000000";
 
-const tfX = new TinyFloat(x);
-const tfY = new TinyFloat(y);
+const tfX = new FixedDecimal(x);
+const tfY = new FixedDecimal(y);
 const decX = new Decimal(x);
 const decY = new Decimal(y);
 const curX = currency(x);
 const curY = currency(y);
 
 await run("constructor", [
-  ["js-fns/decimal", () => new TinyFloat(x)],
+  ["js-fns/decimal", () => new FixedDecimal(x)],
   ["decimal.js", () => new Decimal(x)],
   ["currency.js", () => currency(x)],
 ]);

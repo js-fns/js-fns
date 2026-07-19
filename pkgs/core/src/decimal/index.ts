@@ -5,7 +5,7 @@
  * the decimal point to keep. It adds one digit to handle rounding. The number
  * is rounded using the round half-up method.
  */
-export class TinyFloat {
+export class FixedDecimal {
   /**
    * The BigInt representation of the number. It's multiplied by 10^precision.
    *
@@ -21,14 +21,14 @@ export class TinyFloat {
   private precision: number;
 
   /**
-   * Creates a TinyFloat instance from a string and given precision.
+   * Creates a FixedDecimal instance from a string and given precision.
    *
    * @param tf - The number to create
    * @param precision - The number of digits after decimal point to keep
    */
-  constructor(tf?: TinyFloat | string | number, precision?: number) {
-    const isTF = tf instanceof TinyFloat;
-    this.precision = isTF ? tf.precision : precision ?? 16;
+  constructor(tf?: FixedDecimal | string | number, precision?: number) {
+    const isTF = tf instanceof FixedDecimal;
+    this.precision = isTF ? tf.precision : (precision ?? 16);
     this.int = isTF ? tf.int : tf ? this.parse(tf) : BigInt(0);
   }
 
@@ -82,7 +82,7 @@ export class TinyFloat {
    *
    * @returns Sum of the two numbers
    */
-  add(tf: TinyFloat | string | number): TinyFloat {
+  add(tf: FixedDecimal | string | number): FixedDecimal {
     return this.fromBigInt(this.int + this.argument(tf));
   }
 
@@ -93,7 +93,7 @@ export class TinyFloat {
    *
    * @returns Difference of the two numbers
    */
-  sub(tf: TinyFloat | string | number): TinyFloat {
+  sub(tf: FixedDecimal | string | number): FixedDecimal {
     return this.fromBigInt(this.int - this.argument(tf));
   }
 
@@ -104,9 +104,9 @@ export class TinyFloat {
    *
    * @returns Product of the two numbers
    */
-  mul(tf: TinyFloat | string | number): TinyFloat {
+  mul(tf: FixedDecimal | string | number): FixedDecimal {
     return this.fromBigInt(
-      (this.int * this.argument(tf)) / BigInt(10 ** (this.precision + 1))
+      (this.int * this.argument(tf)) / BigInt(10 ** (this.precision + 1)),
     );
   }
 
@@ -117,9 +117,9 @@ export class TinyFloat {
    *
    * @returns Quotient of the two numbers
    */
-  div(tf: TinyFloat | string | number): TinyFloat {
+  div(tf: FixedDecimal | string | number): FixedDecimal {
     return this.fromBigInt(
-      (this.int * BigInt(10 ** (this.precision + 1))) / this.argument(tf)
+      (this.int * BigInt(10 ** (this.precision + 1))) / this.argument(tf),
     );
   }
 
@@ -130,24 +130,24 @@ export class TinyFloat {
    *
    * @returns The remainder of the division
    */
-  mod(tf: TinyFloat | string | number): TinyFloat {
+  mod(tf: FixedDecimal | string | number): FixedDecimal {
     return this.fromBigInt(this.int % this.argument(tf));
   }
 
   /**
-   * Returns a new TinyFloat with the new precision.
+   * Returns a new FixedDecimal with the new precision.
    *
    * @param precision - The new precision
    *
-   * @returns A new TinyFloat with the new precision
+   * @returns A new FixedDecimal with the new precision
    */
-  withPrecision(precision: number): TinyFloat {
+  withPrecision(precision: number): FixedDecimal {
     if (this.precision === precision) return this;
     return this.fromBigInt(this.transpose(precision), precision);
   }
 
   /**
-   * Normalizes the string or TinyFloat to a BigInt
+   * Normalizes the string or FixedDecimal to a BigInt
    *
    * @param tf - The instance or string to normalize
    *
@@ -155,8 +155,8 @@ export class TinyFloat {
    *
    * @private
    */
-  private argument(tf: TinyFloat | string | number): bigint {
-    return tf instanceof TinyFloat
+  private argument(tf: FixedDecimal | string | number): bigint {
+    return tf instanceof FixedDecimal
       ? tf.withPrecision(this.precision).int
       : this.parse(tf);
   }
@@ -197,7 +197,7 @@ export class TinyFloat {
         return BigInt(
           str.slice(0, point) +
             floatPart +
-            "0".repeat(digits - floatPart.length)
+            "0".repeat(digits - floatPart.length),
         );
       }
     } else {
@@ -212,24 +212,24 @@ export class TinyFloat {
         return BigInt(
           mantissa.slice(0, point) +
             mantissaFloat +
-            "0".repeat(digits + exponent - mantissaFloat.length)
+            "0".repeat(digits + exponent - mantissaFloat.length),
         );
       }
     }
   }
 
   /**
-   * Creates a TinyFloat instance from a BigInt and precision.
+   * Creates a FixedDecimal instance from a BigInt and precision.
    *
    * @param int - The BigInt to create
    * @param precision - The precision
    *
-   * @returns The TinyFloat instance
+   * @returns The FixedDecimal instance
    *
    * @private
    */
-  private fromBigInt(int: bigint, precision?: number): TinyFloat {
-    const tf = new TinyFloat();
+  private fromBigInt(int: bigint, precision?: number): FixedDecimal {
+    const tf = new FixedDecimal();
     tf.int = int;
     tf.precision = precision ?? this.precision;
     return tf;
