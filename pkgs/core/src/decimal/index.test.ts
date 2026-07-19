@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { TinyFloat } from ".";
+import { TinyFloat } from "./index.ts";
 
 describe("TinyFloat", () => {
   it("accepts whole numbers", () => {
