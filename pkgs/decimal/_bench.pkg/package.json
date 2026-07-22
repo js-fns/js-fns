@@ -1,12 +1,12 @@
 {
-  "name": "@js-fns/core-decimal-bench",
+  "name": "@js-fns/decimal-bench",
   "type": "module",
   "devDependencies": {
+    "@js-fns/decimal": "workspace:*",
     "@js-fns/dev": "workspace:*",
-    "@types/node": "^25.4.0",
+    "@types/node": "^24.13.3",
     "currency.js": "^2.0.4",
     "decimal.js": "^10.6.0",
-    "js-fns": "workspace:*",
     "tinybench": "^6.0.2"
   }
 }

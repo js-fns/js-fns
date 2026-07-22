@@ -1,25 +1,120 @@
+# Settings #####################################################################
+
 experimental_monorepo_root = true
+
 [monorepo]
 config_roots = ["pkgs/*", "pkgs/*/src/*/*.pkg/"]
+
+[settings]
+lockfile = true # Enable lock file
+
+# Tools ########################################################################
 
 [tools]
 node = "lts"
 pnpm = "latest"
 
-[settings]
-lockfile = true # Enable lock file
+# Tasks ########################################################################
 
+# Test ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# test
+[tasks.test]
+extends = "pkg/test"
+
+# test:watch
+[tasks."test:watch"]
+extends = "pkg/test:watch"
+
+# Types ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# types
 [tasks.types]
+extends = "pkg/types"
+
+# types:watch
+[tasks."types:watch"]
+extends = "pkg/types:watch"
+
+# Format ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# format
+[tasks.format]
+extends = "pkg/format"
+
+# format:check
+[tasks."format:check"]
+extends = "pkg/format:check"
+
+# Lint ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# lint
+[tasks."lint"]
+extends = "pkg/lint"
+
+# Publish ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[tasks.publish]
+run = "pnpm --recursive publish --access public --no-git-checks"
+
+# Task templates ###############################################################
+
+# Test ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# test
+[task_templates."pkg/test"]
+run = "pnpm exec vitest run"
+
+# test:watch
+[task_templates."pkg/test:watch"]
+run = "pnpm exec vitest"
+
+# Types ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# types
+[task_templates."pkg/types"]
 run = "pnpm exec tsc --build"
 
-[tasks."types:watch"]
+# types:watch
+[task_templates."pkg/types:watch"]
 run = "pnpm exec tsc --build --watch"
 
-[tasks.format]
+# Format ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# format
+[task_templates."pkg/format"]
 run = "pnpm exec oxfmt"
 
-[tasks."format:check"]
+# format:check
+[task_templates."pkg/format:check"]
 run = "pnpm exec oxfmt --check"
 
-[tasks.lint]
+# Lint ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# lint
+[task_templates."pkg/lint"]
 run = "pnpm exec oxlint"
+
+# Build ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# build
+[task_templates."pkg/build"]
+run = "pnpm exec jsd build"
+
+# Publish ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# publish
+[task_templates."pkg/publish"]
+depends = ["build"]
+run = "pnpm --dir dist publish --access public --no-git-checks"
+
+# publish:next
+[task_templates."pkg/publish:next"]
+depends = ["build"]
+run = "pnpm --dir dist publish --access public --no-git-checks --tag next"
+
+# Benchmark ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# bench
+[task_templates."pkg/bench"]
+run = "cd _bench.pkg && mise bench"

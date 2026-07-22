@@ -1,0 +1,7 @@
+{
+  "extends": "@js-fns/dev/config/tsconfig.node",
+  "compilerOptions": {
+    "types": ["node"]
+  },
+  "references": [{ "path": ".." }]
+}

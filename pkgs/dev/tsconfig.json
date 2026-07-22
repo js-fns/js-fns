@@ -1,7 +1,1 @@
-{
-  "extends": "./config/tsconfig.json",
-  "compilerOptions": {
-    // Env
-    "types": ["node"],
-  },
-}
+../dev/tmpls/tsconfig.node.tmpl.json

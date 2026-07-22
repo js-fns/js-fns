@@ -1,6 +1,6 @@
 {
   "name": "js-fns",
-  "version": "3.0.0-alpha.0",
+  "version": "3.0.0",
   "description": "JavaScript utility library",
   "license": "MIT",
   "author": "Sasha Koss <koss@nocorp.me>",
@@ -14,9 +14,14 @@
   "types": "./index.d.ts",
   "exports": {
     ".": "./src/index.ts",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./canon": "./src/canon/index.ts",
+    "./decimal": "./src/decimal/index.ts"
   },
   "publishConfig": {
+    "main": "index.cjs",
+    "module": "index.js",
+    "types": "./index.d.ts",
     "exports": {
       ".": {
         "require": {
@@ -28,14 +33,31 @@
           "default": "./index.js"
         }
       },
-      "./package.json": "./package.json"
-    },
-    "main": "index.cjs",
-    "module": "index.js",
-    "types": "./index.d.ts"
+      "./package.json": "./package.json",
+      "./canon": {
+        "require": {
+          "types": "./canon/index.d.cts",
+          "default": "./canon/index.cjs"
+        },
+        "import": {
+          "types": "./canon/index.d.ts",
+          "default": "./canon/index.js"
+        }
+      },
+      "./decimal": {
+        "require": {
+          "types": "./decimal/index.d.cts",
+          "default": "./decimal/index.cjs"
+        },
+        "import": {
+          "types": "./decimal/index.d.ts",
+          "default": "./decimal/index.js"
+        }
+      }
+    }
   },
   "devDependencies": {
     "@js-fns/dev": "workspace:*",
-    "vitest": "^1.6.1"
+    "vitest": "4.1.10"
   }
 }

@@ -1,5 +1,5 @@
 import { Bench } from "tinybench";
-import { canonize } from "js-fns";
+import { canonize } from "@js-fns/canon";
 import data from "./data/56Kb.json" with { type: "json" };
 import canonicalize from "canonicalize"; // ~450K/week
 // @ts-expect-error: "json-canon" has no types
@@ -46,13 +46,13 @@ bench.add("safe-stable-stringify", () => {
   safeStableStringify(data);
 });
 
-bench.add("js-fns/canon", () => {
+bench.add("@js-fns/canon", () => {
   canonize(data);
 });
 
 await bench.run();
 
-console.log(bench.name);
+console.log(`${bench.name}:`);
 
 if (process.env.DEBUG) {
   console.table(bench.table());

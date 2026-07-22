@@ -1,6 +1,6 @@
 {
   "name": "@js-fns/decimal",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A tiny decimal type for JavaScript",
   "license": "MIT",
   "author": "Sasha Koss <koss@nocorp.me>",
@@ -17,6 +17,9 @@
     "./package.json": "./package.json"
   },
   "publishConfig": {
+    "main": "index.cjs",
+    "module": "index.js",
+    "types": "./index.d.ts",
     "exports": {
       ".": {
         "require": {
@@ -29,9 +32,10 @@
         }
       },
       "./package.json": "./package.json"
-    },
-    "main": "index.cjs",
-    "module": "index.js",
-    "types": "./index.d.ts"
+    }
+  },
+  "devDependencies": {
+    "@js-fns/dev": "workspace:*",
+    "vitest": "4.1.10"
   }
 }

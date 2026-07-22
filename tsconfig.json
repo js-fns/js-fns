@@ -1,4 +1,11 @@
 {
   "include": [],
-  "references": [{ "path": "./pkgs/dev" }, { "path": "./pkgs/core" }]
+  "references": [
+    { "path": "./pkgs/canon/" },
+    { "path": "./pkgs/canon/_bench.pkg/" },
+    { "path": "./pkgs/core/" },
+    { "path": "./pkgs/decimal/" },
+    { "path": "./pkgs/decimal/_bench.pkg/" },
+    { "path": "./pkgs/dev" }
+  ]
 }

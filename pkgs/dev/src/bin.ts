@@ -4,22 +4,29 @@ import { buildPackage } from "./build/package.ts";
 
 const [, , command, packageDir = process.cwd()] = process.argv;
 
-switch (command) {
-  case "build":
-    await buildPackage(packageDir);
-    break;
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
 
-  case undefined:
-  case "help":
-  case "--help":
-  case "-h":
-    printHelp();
-    break;
+async function main() {
+  switch (command) {
+    case "build":
+      await buildPackage(packageDir);
+      break;
 
-  default:
-    console.error(`Unknown command: ${command}`);
-    printHelp();
-    process.exit(1);
+    case undefined:
+    case "help":
+    case "--help":
+    case "-h":
+      printHelp();
+      break;
+
+    default:
+      console.error(`Unknown command: ${command}`);
+      printHelp();
+      process.exit(1);
+  }
 }
 
 function printHelp() {

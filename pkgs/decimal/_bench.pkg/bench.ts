@@ -1,4 +1,4 @@
-import { FixedDecimal } from "js-fns";
+import { FixedDecimal } from "@js-fns/decimal";
 import { Bench } from "tinybench";
 import { Decimal } from "decimal.js";
 import currency from "currency.js";
@@ -14,31 +14,31 @@ const curX = currency(x);
 const curY = currency(y);
 
 await run("constructor", [
-  ["js-fns/decimal", () => new FixedDecimal(x)],
+  ["@js-fns/decimal", () => new FixedDecimal(x)],
   ["decimal.js", () => new Decimal(x)],
   ["currency.js", () => currency(x)],
 ]);
 
 await run("add", [
-  ["js-fns/decimal", () => tfX.add(tfY)],
+  ["@js-fns/decimal", () => tfX.add(tfY)],
   ["decimal.js", () => decX.add(decY)],
   ["currency.js", () => curX.add(curY)],
 ]);
 
 await run("sub", [
-  ["js-fns/decimal", () => tfX.sub(tfY)],
+  ["@js-fns/decimal", () => tfX.sub(tfY)],
   ["decimal.js", () => decX.sub(decY)],
   ["currency.js", () => curX.subtract(curY)],
 ]);
 
 await run("mul", [
-  ["js-fns/decimal", () => tfX.mul(tfY)],
+  ["@js-fns/decimal", () => tfX.mul(tfY)],
   ["decimal.js", () => decX.mul(decY)],
   ["currency.js", () => curX.multiply(curY)],
 ]);
 
 await run("mod", [
-  ["js-fns/decimal", () => tfX.mod(tfY)],
+  ["@js-fns/decimal", () => tfX.mod(tfY)],
   ["decimal.js", () => decX.mod(decY)],
 ]);
 
@@ -49,7 +49,7 @@ async function run(name: string, tasks: [string, () => unknown][]) {
 
   await bench.run();
 
-  console.log(bench.name);
+  console.log(`${bench.name}:`);
 
   if (process.env.DEBUG) {
     console.table(bench.table());

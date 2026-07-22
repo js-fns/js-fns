@@ -1,7 +1,6 @@
 packages:
   - pkgs/*
-  - pkgs/*/**/*.pkg/
-  - "!pkgs/smolcanon"
+  - pkgs/*/*.pkg/
 
 allowBuilds:
   "@parcel/watcher": true

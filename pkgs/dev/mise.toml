@@ -1,11 +1,1 @@
-[tasks.test]
-run = "pnpm exec vitest run"
-
-[tasks."test:watch"]
-run = "pnpm exec vitest"
-
-[tasks.types]
-run = "pnpm exec tsc"
-
-[tasks."types:watch"]
-run = "pnpm exec tsc --watch"
+../dev/tmpls/mise.tmpl.toml
