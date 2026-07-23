@@ -52,11 +52,6 @@ extends = "pkg/format:check"
 [tasks."lint"]
 extends = "pkg/lint"
 
-# Publish ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-[tasks.publish]
-run = "pnpm --recursive publish --access public --no-git-checks"
-
 # Task templates ###############################################################
 
 # Test ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
