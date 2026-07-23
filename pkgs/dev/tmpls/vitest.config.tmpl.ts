@@ -4,5 +4,6 @@ export default defineConfig({
   test: {
     isolate: false,
     passWithNoTests: true,
+    testTimeout: 100,
   },
 });

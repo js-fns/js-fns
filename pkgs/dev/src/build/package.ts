@@ -25,13 +25,19 @@ async function buildFormat(
   outDir: string,
   format: "esm" | "cjs",
 ) {
-  const entries = await listEntries(srcDir);
+  const entries = Object.fromEntries(
+    (await listEntries(srcDir)).map((file) => [
+      path.relative(srcDir, file).replace(/\.[^.]+$/, ""),
+      file,
+    ]),
+  );
   const extension = format === "esm" ? "js" : "cjs";
 
   await build({
     input: entries,
     external: () => true,
     optimization: { inlineConst: false },
+    resolve: { symlinks: false },
     output: {
       dir: outDir,
       preserveModules: true,
@@ -53,6 +59,15 @@ async function listEntries(dir: string): Promise<string[]> {
     if (entry.isDirectory()) {
       if (isIgnoredPath(filePath)) continue;
       files.push(...(await listEntries(filePath)));
+    } else if (entry.isSymbolicLink()) {
+      const stats = await fs.stat(filePath);
+
+      if (stats.isDirectory()) {
+        if (isIgnoredPath(filePath)) continue;
+        files.push(...(await listEntries(filePath)));
+      } else if (stats.isFile() && isSourceEntry(filePath)) {
+        files.push(filePath);
+      }
     } else if (entry.isFile() && isSourceEntry(filePath)) {
       files.push(filePath);
     }

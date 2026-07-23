@@ -8,16 +8,6 @@ This change log follows the format documented in [Keep a CHANGELOG].
 [semantic versioning]: http://semver.org/
 [keep a changelog]: http://keepachangelog.com/
 
-## v4.0.0 - 2026-07-23
-
-### Added
-
-- Added `@js-fns/rpc@0.1.0` as `js-fns/rpc` module.
-
-### Changed
-
-- **BREAKING**: Removed the barrel file (`js-fns`) to prevent double import suggestions in code editors and bundlers overload.
-
-## v3.0.0 - 2026-07-22
+## v0.1.0 - 2026-07-23
 
 Initial version

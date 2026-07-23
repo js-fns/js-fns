@@ -1,0 +1,64 @@
+{
+  "name": "@js-fns/rpc",
+  "version": "0.1.0",
+  "description": "Tiny JS RPC implementation",
+  "license": "MIT",
+  "author": "Sasha Koss <koss@nocorp.me>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/js-fns/js-fns.git"
+  },
+  "type": "module",
+  "main": "index.cjs",
+  "module": "index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./birpc": "./src/birpc/index.ts",
+    "./transports/worker": "./src/transports/worker/index.ts",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "main": "index.cjs",
+    "module": "index.js",
+    "types": "./index.d.ts",
+    "exports": {
+      ".": {
+        "require": {
+          "types": "./index.d.cts",
+          "default": "./index.cjs"
+        },
+        "import": {
+          "types": "./index.d.ts",
+          "default": "./index.js"
+        }
+      },
+      "./birpc": {
+        "require": {
+          "types": "./birpc/index.d.cts",
+          "default": "./birpc/index.cjs"
+        },
+        "import": {
+          "types": "./birpc/index.d.ts",
+          "default": "./birpc/index.js"
+        }
+      },
+      "./transports/worker": {
+        "require": {
+          "types": "./transports/worker/index.d.cts",
+          "default": "./transports/worker/index.cjs"
+        },
+        "import": {
+          "types": "./transports/worker/index.d.ts",
+          "default": "./transports/worker/index.js"
+        }
+      },
+      "./package.json": "./package.json"
+    }
+  },
+  "devDependencies": {
+    "@js-fns/dev": "workspace:*",
+    "vitest": "4.1.10",
+    "zod": "^4.4.3"
+  }
+}

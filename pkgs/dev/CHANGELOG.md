@@ -8,6 +8,12 @@ This change log follows the format documented in [Keep a CHANGELOG].
 [semantic versioning]: http://semver.org/
 [keep a changelog]: http://keepachangelog.com/
 
+## v0.2.0 - 2026-07-23
+
+### Added
+
+- Added support for symlinks to the package build command.
+
 ## v0.1.1 - 2026-07-22
 
 Initial version

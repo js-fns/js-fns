@@ -1,6 +1,6 @@
 {
   "name": "js-fns",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "JavaScript utility library",
   "license": "MIT",
   "author": "Sasha Koss <koss@nocorp.me>",
@@ -16,7 +16,10 @@
     ".": "./src/index.ts",
     "./package.json": "./package.json",
     "./canon": "./src/canon/index.ts",
-    "./decimal": "./src/decimal/index.ts"
+    "./decimal": "./src/decimal/index.ts",
+    "./rpc": "./src/rpc/index.ts",
+    "./rpc/birpc": "./src/rpc/birpc/index.ts",
+    "./rpc/transports/worker": "./src/rpc/transports/worker/index.ts"
   },
   "publishConfig": {
     "main": "index.cjs",
@@ -53,11 +56,40 @@
           "types": "./decimal/index.d.ts",
           "default": "./decimal/index.js"
         }
+      },
+      "./rpc": {
+        "require": {
+          "types": "./rpc/index.d.cts",
+          "default": "./rpc/index.cjs"
+        },
+        "import": {
+          "types": "./rpc/index.d.ts",
+          "default": "./rpc/index.js"
+        }
+      },
+      "./rpc/birpc": {
+        "require": {
+          "types": "./rpc/birpc/index.d.cts",
+          "default": "./rpc/birpc/index.cjs"
+        },
+        "import": {
+          "types": "./rpc/birpc/index.d.ts",
+          "default": "./rpc/birpc/index.js"
+        }
+      },
+      "./rpc/transports/worker": {
+        "require": {
+          "types": "./rpc/transports/worker/index.d.cts",
+          "default": "./rpc/transports/worker/index.cjs"
+        },
+        "import": {
+          "types": "./rpc/transports/worker/index.d.ts",
+          "default": "./rpc/transports/worker/index.js"
+        }
       }
     }
   },
   "devDependencies": {
-    "@js-fns/dev": "workspace:*",
-    "vitest": "4.1.10"
+    "@js-fns/dev": "workspace:*"
   }
 }
