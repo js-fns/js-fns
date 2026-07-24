@@ -1,0 +1,41 @@
+{
+  "name": "@js-fns/promise",
+  "version": "0.1.0",
+  "description": "Tiny JS promise utilities",
+  "license": "MIT",
+  "author": "Sasha Koss <koss@nocorp.me>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/js-fns/js-fns.git"
+  },
+  "type": "module",
+  "main": "index.cjs",
+  "module": "index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "main": "index.cjs",
+    "module": "index.js",
+    "types": "./index.d.ts",
+    "exports": {
+      ".": {
+        "require": {
+          "types": "./index.d.cts",
+          "default": "./index.cjs"
+        },
+        "import": {
+          "types": "./index.d.ts",
+          "default": "./index.js"
+        }
+      },
+      "./package.json": "./package.json"
+    }
+  },
+  "devDependencies": {
+    "@js-fns/dev": "workspace:*",
+    "vitest": "4.1.10"
+  }
+}

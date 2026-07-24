@@ -1,0 +1,1 @@
+../dev/tmpls/vitest.config.tmpl.ts

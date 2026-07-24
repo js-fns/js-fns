@@ -1,6 +1,6 @@
 {
   "name": "js-fns",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "JavaScript utility library",
   "license": "MIT",
   "author": "Sasha Koss <koss@nocorp.me>",
@@ -17,6 +17,7 @@
     "./package.json": "./package.json",
     "./canon": "./src/canon/index.ts",
     "./decimal": "./src/decimal/index.ts",
+    "./promise": "./src/promise/index.ts",
     "./rpc": "./src/rpc/index.ts",
     "./rpc/birpc": "./src/rpc/birpc/index.ts",
     "./rpc/transports/worker": "./src/rpc/transports/worker/index.ts"
@@ -55,6 +56,16 @@
         "import": {
           "types": "./decimal/index.d.ts",
           "default": "./decimal/index.js"
+        }
+      },
+      "./promise": {
+        "require": {
+          "types": "./promise/index.d.cts",
+          "default": "./promise/index.cjs"
+        },
+        "import": {
+          "types": "./promise/index.d.ts",
+          "default": "./promise/index.js"
         }
       },
       "./rpc": {

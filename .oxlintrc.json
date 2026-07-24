@@ -45,5 +45,5 @@
     "builtin": true
   },
   "globals": {},
-  "ignorePatterns": []
+  "ignorePatterns": ["pkgs/core/src/**/*"]
 }

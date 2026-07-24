@@ -1,1 +1,6 @@
-../dev/tmpls/tsconfig.tmpl.json
+{
+  // TODO: Core currently contains just symlinks to other packages, it is better
+  // to generate it on the fly. Also core is bad name, it's just barrel.
+  "include": ["dummy.ts"],
+  "extends": "@js-fns/dev/config/tsconfig"
+}

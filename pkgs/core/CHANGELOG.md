@@ -8,6 +8,12 @@ This change log follows the format documented in [Keep a CHANGELOG].
 [semantic versioning]: http://semver.org/
 [keep a changelog]: http://keepachangelog.com/
 
+## v4.1.0 - 2026-07-24
+
+### Added
+
+- Added `@js-fns/promise@0.1.0` as `js-fns/promise` module.
+
 ## v4.0.1 - 2026-07-23
 
 ### Fixed

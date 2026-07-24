@@ -7,6 +7,7 @@
     { "path": "./pkgs/decimal/" },
     { "path": "./pkgs/decimal/_bench.pkg/" },
     { "path": "./pkgs/dev" },
+    { "path": "./pkgs/promise/" },
     { "path": "./pkgs/rpc/" }
   ]
 }
