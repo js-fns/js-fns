@@ -18,6 +18,10 @@ This change log follows the format documented in [Keep a CHANGELOG].
 
 - Added default Vitest config.
 
+- Added basic root-level mise config with task templates.
+
+- Made `jsd build` copy static assets in the src directory (`md`, `json`, `toml`, `kdl`, `yaml`, `yml`) to the dist dir.
+
 ## v0.2.1 - 2026-07-23
 
 ### Fixed
