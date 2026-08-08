@@ -17,20 +17,17 @@ export async function buildPackage(packageDir: string) {
   await copyPackageFiles(cwd, outDir);
   await buildCts(outDir);
   await preparePackageJson(outDir);
-  await $({ cwd })`pnpm exec oxfmt ${outDir}`;
+  await $({ cwd: outDir })`pnpm exec oxfmt`;
 }
 
-async function buildFormat(
-  srcDir: string,
-  outDir: string,
-  format: "esm" | "cjs",
-) {
+async function buildFormat(srcDir: string, outDir: string, format: "esm" | "cjs") {
   const entries = Object.fromEntries(
     (await listEntries(srcDir)).map((file) => [
       path.relative(srcDir, file).replace(/\.[^.]+$/, ""),
       file,
     ]),
   );
+
   const extension = format === "esm" ? "js" : "cjs";
 
   await build({
@@ -45,6 +42,7 @@ async function buildFormat(
       entryFileNames: `[name].${extension}`,
       format,
       plugins: [rewriteImportExtensions(format)],
+      exports: "named",
     },
   });
 }
@@ -79,9 +77,7 @@ async function listEntries(dir: string): Promise<string[]> {
 function isSourceEntry(filePath: string) {
   const ext = path.extname(filePath);
   return (
-    (ext === ".ts" || ext === ".js") &&
-    !filePath.endsWith(".d.ts") &&
-    !isIgnoredPath(filePath)
+    (ext === ".ts" || ext === ".js") && !filePath.endsWith(".d.ts") && !isIgnoredPath(filePath)
   );
 }
 
@@ -102,24 +98,16 @@ function rewriteImportExtensions(format: "esm" | "cjs") {
     renderChunk(code: string, chunk: OutputChunk) {
       const nextCode = code.replace(
         /(from\s*["']|import\(\s*["']|require\(\s*["'])(\.{1,2}\/[^"']+?)(\.[jt]s)(["'])/g,
-        (_match, prefix, importPath, _ext, suffix) =>
-          `${prefix}${importPath}${ext}${suffix}`,
+        (_match, prefix, importPath, _ext, suffix) => `${prefix}${importPath}${ext}${suffix}`,
       );
 
-      return nextCode === code
-        ? null
-        : { code: nextCode, map: chunk.map ?? null };
+      return nextCode === code ? null : { code: nextCode, map: chunk.map ?? null };
     },
   };
 }
 
 async function copyPackageFiles(cwd: string, outDir: string) {
-  for (const file of [
-    "package.json",
-    "README.md",
-    "LICENSE.md",
-    "CHANGELOG.md",
-  ]) {
+  for (const file of ["package.json", "README.md", "LICENSE.md", "CHANGELOG.md"]) {
     const source = path.join(cwd, file);
     try {
       await fs.copyFile(source, path.join(outDir, file));
@@ -134,10 +122,7 @@ async function buildCts(outDir: string) {
     if (!file.endsWith(".d.ts")) continue;
     const ctsFile = file.replace(/\.d\.ts$/, ".d.cts");
     const content = await fs.readFile(file, "utf8");
-    await fs.writeFile(
-      ctsFile,
-      content.replace(/\.js"/g, '.cjs"').replace(/\.ts"/g, '.cts"'),
-    );
+    await fs.writeFile(ctsFile, content.replace(/\.js"/g, '.cjs"').replace(/\.ts"/g, '.cts"'));
   }
 }
 

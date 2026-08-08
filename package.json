@@ -3,6 +3,7 @@
   "description": "js-fns monorepo root",
   "type": "module",
   "devDependencies": {
+    "@js-fns/dev": "workspace:*",
     "oxfmt": "^0.59.0",
     "oxlint": "^1.74.0",
     "oxlint-tsgolint": "^0.25.0",

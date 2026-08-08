@@ -8,6 +8,16 @@ This change log follows the format documented in [Keep a CHANGELOG].
 [semantic versioning]: http://semver.org/
 [keep a changelog]: http://keepachangelog.com/
 
+## v0.3.0 - 2026-08-09
+
+### Added
+
+- Included TS configs in the published package.
+
+- Added default Oxfmt and Oxlint configs.
+
+- Added default Vitest config.
+
 ## v0.2.1 - 2026-07-23
 
 ### Fixed

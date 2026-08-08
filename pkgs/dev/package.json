@@ -1,6 +1,6 @@
 {
   "name": "@js-fns/dev",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "js-fns development tools",
   "license": "MIT",
   "author": "Sasha Koss <koss@nocorp.me>",
@@ -16,12 +16,56 @@
   ],
   "type": "module",
   "exports": {
-    "./config/tsconfig": "./config/tsconfig.json",
-    "./config/tsconfig.dist": "./config/tsconfig.dist.json",
-    "./config/tsconfig.node": "./config/tsconfig.node.json",
-    "./config/tsconfig.node.dist": "./config/tsconfig.node.dist.json"
+    "./config/tsconfig": "./src/config/tsconfig.json",
+    "./config/tsconfig.dist": "./src/config/tsconfig.dist.json",
+    "./config/tsconfig.node": "./src/config/tsconfig.node.json",
+    "./config/tsconfig.node.dist": "./src/config/tsconfig.node.dist.json",
+    "./config/oxfmt": "./src/config/oxfmt.config.ts",
+    "./config/oxlint": "./src/config/oxlint.config.ts",
+    "./config/vitest": "./src/config/vitest.config.ts"
+  },
+  "publishConfig": {
+    "exports": {
+      "./package.json": "./package.json",
+      "./config/tsconfig": "./config/tsconfig.json",
+      "./config/tsconfig.dist": "./config/tsconfig.dist.json",
+      "./config/tsconfig.node": "./config/tsconfig.node.json",
+      "./config/tsconfig.node.dist": "./config/tsconfig.node.dist.json",
+      "./config/oxfmt": {
+        "require": {
+          "types": "./config/oxfmt.config.d.cts",
+          "default": "./config/oxfmt.config.cjs"
+        },
+        "import": {
+          "types": "./config/oxfmt.config.d.ts",
+          "default": "./config/oxfmt.config.js"
+        }
+      },
+      "./config/oxlint": {
+        "require": {
+          "types": "./config/oxlint.config.d.cts",
+          "default": "./config/oxlint.config.cjs"
+        },
+        "import": {
+          "types": "./config/oxlint.config.d.ts",
+          "default": "./config/oxlint.config.js"
+        }
+      },
+      "./config/vitest": {
+        "require": {
+          "types": "./config/vitest.config.d.cts",
+          "default": "./config/vitest.config.cjs"
+        },
+        "import": {
+          "types": "./config/vitest.config.d.ts",
+          "default": "./config/vitest.config.js"
+        }
+      }
+    }
   },
   "dependencies": {
+    "oxfmt": "^0.62.0",
+    "oxlint": "^1.77.0",
     "rolldown": "^1.2.0",
     "zx": "^8.8.5"
   },
