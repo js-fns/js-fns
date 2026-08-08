@@ -8,6 +8,12 @@ This change log follows the format documented in [Keep a CHANGELOG].
 [semantic versioning]: http://semver.org/
 [keep a changelog]: http://keepachangelog.com/
 
+## v0.3.2 - 2026-08-09
+
+#### Fixed
+
+- Moved `vitest.config.ts` to the correct `config` dir.
+
 ## v0.3.1 - 2026-08-09
 
 #### Fixed
