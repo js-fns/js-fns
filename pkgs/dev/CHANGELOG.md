@@ -8,15 +8,21 @@ This change log follows the format documented in [Keep a CHANGELOG].
 [semantic versioning]: http://semver.org/
 [keep a changelog]: http://keepachangelog.com/
 
+## v0.3.3 - 2026-08-12
+
+### Fixed
+
+- Fixed the `bin` field in the published package to point to the correct `bin.js` file.
+
 ## v0.3.2 - 2026-08-09
 
-#### Fixed
+### Fixed
 
 - Moved `vitest.config.ts` to the correct `config` dir.
 
 ## v0.3.1 - 2026-08-09
 
-#### Fixed
+### Fixed
 
 - Fixed the package `files` field to include all files.
 

@@ -1,6 +1,6 @@
 {
   "name": "@js-fns/dev",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "js-fns development tools",
   "license": "MIT",
   "author": "Sasha Koss <koss@nocorp.me>",
@@ -22,6 +22,9 @@
     "./config/vitest": "./src/config/vitest.config.ts"
   },
   "publishConfig": {
+    "bin": {
+      "jsd": "./bin.js"
+    },
     "exports": {
       "./package.json": "./package.json",
       "./config/tsconfig": "./config/tsconfig.json",
