@@ -1,5 +1,5 @@
-import { xxh32 } from "../xxh32.js";
-import type { xxhStr } from "./xxhStr.js";
+import { xxh32 } from "../xxh32.ts";
+import type { xxhStr } from "./xxhStr.ts";
 
 /**
  * Computes the 32-bit xxHash of a string-like value.

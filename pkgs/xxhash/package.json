@@ -1,28 +1,20 @@
 {
-  "name": "smolxxh",
-  "version": "1.1.0",
+  "name": "@js-fns/xxhash",
+  "version": "0.1.0",
   "description": "Tiny xxHash JS implementation",
-  "keywords": [
-    "hashing",
-    "xxh",
-    "xxh32",
-    "xxh64",
-    "xxhash"
-  ],
-  "homepage": "https://github.com/kossnocorp/smolxxh#readme",
-  "bugs": {
-    "url": "https://github.com/kossnocorp/smolxxh/issues"
-  },
   "license": "MIT",
   "author": "Sasha Koss <koss@nocorp.me>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kossnocorp/smolxxh.git"
+    "url": "git+https://github.com/js-fns/js-fns.git"
   },
   "type": "module",
   "main": "index.cjs",
   "module": "index.js",
   "types": "./index.d.ts",
+  "imports": {
+    "#xxhash/canon": "@js-fns/canon"
+  },
   "exports": {
     ".": "./src/index.ts",
     "./xxh32": "./src/xxh32.ts",
@@ -36,6 +28,9 @@
     "./package.json": "./package.json"
   },
   "publishConfig": {
+    "main": "index.cjs",
+    "module": "index.js",
+    "types": "./index.d.ts",
     "exports": {
       ".": {
         "require": {
@@ -130,34 +125,18 @@
       "./package.json": "./package.json"
     }
   },
-  "scripts": {
-    "test": "vitest run"
-  },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.18.2",
-    "@babel/cli": "^7.24.1",
-    "@babel/core": "^7.24.4",
-    "@babel/plugin-transform-modules-commonjs": "^7.24.1",
-    "@babel/preset-env": "^7.24.4",
-    "@babel/preset-typescript": "^7.24.1",
-    "@parcel/watcher": "^2.4.1",
-    "@swc/core": "^1.4.13",
-    "@types/node": "^25.4.0",
-    "@types/xxhashjs": "^0.2.4",
-    "babel-plugin-replace-import-extension": "^1.1.4",
-    "benny": "^3.7.1",
-    "bytes-iec": "^3.1.1",
-    "glob": "^10.3.12",
-    "minimatch": "^10.0.1",
-    "oxfmt": "^0.38.0",
-    "oxlint": "^1.53.0",
-    "oxlint-tsgolint": "^0.16.0",
-    "picocolors": "^1.0.0",
-    "smolcanon": "^0.2.1",
-    "tsx": "^4.21.0",
-    "typescript": "^5.9.3",
-    "vitest": "^1.4.0",
-    "xxhash-wasm": "^1.1.0",
-    "xxhashjs": "^0.2.2"
+    "@js-fns/canon": "workspace:*",
+    "@js-fns/dev": "workspace:*",
+    "@types/node": "^24.13.3",
+    "vitest": "4.1.10"
+  },
+  "peerDependencies": {
+    "@js-fns/canon": "^0.2.0"
+  },
+  "peerDependenciesMeta": {
+    "@js-fns/canon": {
+      "optional": true
+    }
   }
 }

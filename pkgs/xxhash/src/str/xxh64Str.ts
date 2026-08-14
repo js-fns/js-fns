@@ -1,5 +1,5 @@
-import { xxh64 } from "../xxh64.js";
-import type { xxhStr } from "./xxhStr.js";
+import { xxh64 } from "../xxh64.ts";
+import type { xxhStr } from "./xxhStr.ts";
 
 /**
  * Computes the 64-bit xxHash of a string-like value.

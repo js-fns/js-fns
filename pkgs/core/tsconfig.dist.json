@@ -1,1 +1,3 @@
-../dev/tmpls/tsconfig.dist.tmpl.json
+{
+  "extends": "@js-fns/dev/config/tsconfig.node.dist"
+}

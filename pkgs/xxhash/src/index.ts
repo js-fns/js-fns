@@ -1,2 +1,2 @@
-export { xxh32 } from "./xxh32.js";
-export { xxh64 } from "./xxh64.js";
+export { xxh32 } from "./xxh32.ts";
+export { xxh64 } from "./xxh64.ts";

@@ -8,15 +8,16 @@ const xxh32Prime5 = 0x165667b1;
 /**
  * Computes the 32-bit xxHash of the given input.
  *
- * It based on a [reference C implementation](https://github.com/easyaspi314/xxhash-clean/blob/86a04ab3f01277049a23f6c9e2c4a6c174ff50c4/xxhash32-ref.c).
+ * It is based on a [reference C implementation](https://github.com/easyaspi314/xxhash-clean/blob/86a04ab3f01277049a23f6c9e2c4a6c174ff50c4/xxhash32-ref.c).
  *
  * @param input - Input to hash.
  * @param seed - The 32-bit seed value.
  *
  * @returns The computed 32-bit hash as an unsigned integer.
  */
-export function xxh32(input: Buffer, seed: number = 0): number {
+export function xxh32(input: Uint8Array, seed: number = 0): number {
   const length = input.length;
+  const view = new DataView(input.buffer, input.byteOffset, input.byteLength);
   let offset = 0;
   let hash: number;
 
@@ -30,13 +31,13 @@ export function xxh32(input: Buffer, seed: number = 0): number {
     // Process 16-byte chunks
     const limit = length - 16;
     while (offset <= limit) {
-      acc1 = round32(acc1, input.readUInt32LE(offset));
+      acc1 = round32(acc1, view.getUint32(offset, true));
       offset += 4;
-      acc2 = round32(acc2, input.readUInt32LE(offset));
+      acc2 = round32(acc2, view.getUint32(offset, true));
       offset += 4;
-      acc3 = round32(acc3, input.readUInt32LE(offset));
+      acc3 = round32(acc3, view.getUint32(offset, true));
       offset += 4;
-      acc4 = round32(acc4, input.readUInt32LE(offset));
+      acc4 = round32(acc4, view.getUint32(offset, true));
       offset += 4;
     }
 
@@ -56,7 +57,7 @@ export function xxh32(input: Buffer, seed: number = 0): number {
   // Process remaining 4-byte chunks
   const limit4 = length - 4;
   while (offset <= limit4) {
-    hash = (hash + Math.imul(input.readUInt32LE(offset), xxh32Prime3)) >>> 0;
+    hash = (hash + Math.imul(view.getUint32(offset, true), xxh32Prime3)) >>> 0;
     hash = rotate32(hash, 17);
     hash = Math.imul(hash, xxh32Prime4) >>> 0;
     offset += 4;

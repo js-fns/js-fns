@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { xxh64 } from "./xxh64.js";
+import { xxh64 } from "./xxh64.ts";
 
 describe("xxh64", () => {
   it("reference tests", () => {
@@ -8,7 +8,7 @@ describe("xxh64", () => {
 
     const magicPrime = 0x9e3779b1n;
     const size = 101;
-    const data = Buffer.alloc(size);
+    const data = new Uint8Array(size);
     let byteGen = Number(magicPrime);
     for (let i = 0; i < size; i++) {
       data[i] = (byteGen >>> 24) & 0xff;
@@ -23,5 +23,18 @@ describe("xxh64", () => {
     expect(xxh64(data.subarray(0, 14), magicPrime)).toBe(0x5b9611585efcc9cbn);
     expect(xxh64(data, 0n)).toBe(0x0eab543384f878adn);
     expect(xxh64(data, magicPrime)).toBe(0xcaa65939306f1e21n);
+  });
+
+  it("supports offset byte arrays", () => {
+    const data = new Uint8Array(34);
+    for (let index = 0; index < 32; index++) data[index + 1] = index;
+
+    expect(xxh64(data.subarray(1, 33))).toBe(
+      xxh64(Uint8Array.from({ length: 32 }, (_, index) => index)),
+    );
+  });
+
+  it("supports Buffer", () => {
+    expect(xxh64(Buffer.from("hello world"))).toBe(0x45ab6734b21e6968n);
   });
 });

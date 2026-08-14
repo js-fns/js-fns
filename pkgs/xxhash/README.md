@@ -1,128 +1,101 @@
-# Smol xxHash
+# @js-fns/xxhash
 
-Tiny [xxHash](https://xxhash.com/) JS implementation.
+Tiny [xxHash](https://xxhash.com/) implementation for JavaScript.
 
-Smol xxHash is a modern, faster, and smaller alternative to the [xxhashjs](https://www.npmjs.com/package/xxhashjs) package. It is 3.8x faster than it, and `xxh32` and `xxh64` are just `366B` and `475B`, respectively.
+It provides portable XXH32 and XXH64 functions that accept `Uint8Array`, including Node.js `Buffer`, plus helpers for hashing strings and canonicalized JavaScript values.
 
-It is only 1.8x slower than the [xxhash-wasm](https://www.npmjs.com/package/xxhash-wasm) package that is `3 KB` and requires WebAssembly support.
-
-The package features dual CJS/ESM support and built-in TypeScript definitions.
-
-Implementation is a port of a reference C implementation ([`xxhash32-ref.c`](https://github.com/easyaspi314/xxhash-clean/blob/86a04ab3f01277049a23f6c9e2c4a6c174ff50c4/xxhash32-ref.c) and [`xxhash64-ref.c`](https://github.com/easyaspi314/xxhash-clean/blob/86a04ab3f01277049a23f6c9e2c4a6c174ff50c4/xxhash64-ref.c)).
+The implementation is based on the reference C implementations [`xxhash32-ref.c`](https://github.com/easyaspi314/xxhash-clean/blob/86a04ab3f01277049a23f6c9e2c4a6c174ff50c4/xxhash32-ref.c) and [`xxhash64-ref.c`](https://github.com/easyaspi314/xxhash-clean/blob/86a04ab3f01277049a23f6c9e2c4a6c174ff50c4/xxhash64-ref.c).
 
 ## Installation
 
-The package is available on npm:
+The package is available as a standalone npm package:
 
 ```sh
-npm install smolxxh
+npm install @js-fns/xxhash
+```
+
+It is also available as a part of the `js-fns` collection:
+
+```sh
+npm install js-fns
 ```
 
 ## Usage
 
-### Basics
-
-Pass `Buffer` or `Uint8Array` to the `xxh32`/`xxh64` function to get the hash of the content:
+Pass a `Uint8Array` to `xxh32` or `xxh64` to get its hash:
 
 ```ts
-import { xxh32, xxh64 } from "smolxxh";
+import { xxh32, xxh64 } from "@js-fns/xxhash"; // Or "js-fns/xxhash"
 
-xxh32(Buffer.from("hello world", "utf8")).toString(16);
-// => "cebb6622"
+const input = new TextEncoder().encode("hello world");
 
-xxh64(Buffer.from("hello world", "utf8")).toString(16);
-// => "45ab6734b21e6968"
+xxh32(input).toString(16);
+//=> "cebb6622"
+
+xxh64(input).toString(16);
+//=> "45ab6734b21e6968"
 ```
 
-### Helpers
+Node.js `Buffer` is a `Uint8Array` and can be passed directly.
 
-Smol xxHash comes with a set of helper functions helping to reduce boilerplate when hashing strings and JS values.
+### String Hashing
 
-- [String hashing with `xxh32Str` and `xxh64Str`](#string-hashing)
-- [Any JS value hashing with `xxh32Any` and `xxh64Any`](#any-js-value-hashing)
-
-#### String Hashing
-
-To quickly hash string values, you can use the `xxh32Str` and `xxh64Str` helpers:
+The Node.js string helpers accept string-like values and the encodings supported by `Buffer.from`:
 
 ```ts
-import { xxh32Str, xxh64Str } from "smolxxh/str";
+import { xxh32Str, xxh64Str } from "@js-fns/xxhash/str";
+// Or "js-fns/xxhash/str"
 
 xxh32Str("hello world");
-// => "cebb6622"
+//=> "cebb6622"
 
 xxh64Str("hello world");
-// => "45ab6734b21e6968"
-```
+//=> "45ab6734b21e6968"
 
-It supports any string as well as objects implementing `toString` and `[Symbol.toPrimitive](hint: "string")` methods.
-
-You also can pass encoding as the second argument, which defaults to `utf8`:
-
-```ts
 xxh32Str("cafebabe", "hex");
-// => "408e9853"
-
-xxh32Str("cafebabe");
-// => "f6a25a07"
+//=> "408e9853"
 ```
 
-Both `xxh32Str` and `xxh64Str` infer the return type, so you can use it with branded strings without explicitly casting the result:
+Both helpers infer their return type, allowing a branded string type to be supplied contextually or explicitly:
 
 ```ts
-type UserHash = string & { [userHashBrand]: true };
-declare const userHashBrand: unique symbol;
+type UserHash = string & { readonly userHash: unique symbol };
 
-// No type error!
-const userHash: UserHash = xxh32Str(user);
-
-// Can pass the generic type parameter too:
-callback(xxh32Str<UserHash>(user));
+const userHash: UserHash = xxh32Str("user");
+const explicitHash = xxh64Str<UserHash>("user");
 ```
 
-#### Any JS Value Hashing
+### Value Hashing
 
-To consistently hash any JS value, including objects, they must be canonized first.
-
-Smol xxHash comes with `xxh32Any` and `xxh64Any` helpers that utilize the [Smol Canon](https://github.com/kossnocorp/smolcanon) package to canonize the value before hashing it:
+The `xxh32Any` and `xxh64Any` helpers canonicalize values with [`@js-fns/canon`](../canon) before hashing them:
 
 ```ts
-import { xxh32Any, xxh64Any } from "smolxxh/any";
+import { xxh32Any, xxh64Any } from "@js-fns/xxhash/any";
+// Or "js-fns/xxhash/any"
 
-// Objects get canonized, so order doesn't matter:
 xxh32Any({ foo: "bar", baz: "qux" });
 //=> "ed4e5029"
 xxh32Any({ baz: "qux", foo: "bar" });
 //=> "ed4e5029"
 
-// Any JS value can be hashed
 xxh64Any([1, 2, 3]);
 //=> "bba91612761944c5"
-xxh64Any(undefined);
-//=> "6aeed7835f4984a3"
-xxh64Any(null);
-//=> "3ec9e10063179f3a"
-xxh64Any(NaN);
-//=> "bada388f33705db6"
 ```
 
-Both `xxh32Any` and `xxh64Any` infer the return type, so you can use it with branded strings without explicitly casting the result:
+When using the standalone package, install the optional canon peer dependency:
 
-```ts
-type UserHash = string & { [userHashBrand]: true };
-declare const userHashBrand: unique symbol;
-
-// No type error!
-const userHash: UserHash = xxh32Any(user);
-
-// Can pass the generic type parameter too:
-callback(xxh64Any<UserHash>(user));
+```sh
+npm install @js-fns/xxhash @js-fns/canon
 ```
 
-To use the `xxh32Any` and `xxh64Any` helpers, you need to have the `smolcanon` package installed in your project, as they depend on it for canonization:
+The `js-fns` collection already includes canon.
 
-```bash
-npm install smolcanon
+## Benchmark
+
+[The benchmark](./_bench.pkg/bench.ts) compares XXH32 and XXH64 with `xxhashjs` and `xxhash-wasm` across small and large inputs:
+
+```sh
+mise bench
 ```
 
 ## Changelog

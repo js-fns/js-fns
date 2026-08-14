@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { xxh32Str } from "./xxh32Str.js";
+import { xxh32Str } from "./xxh32Str.ts";
 
 describe("xxh32Str", () => {
   it("hashes strings", () => {

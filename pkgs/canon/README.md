@@ -2,7 +2,7 @@
 
 Tiny JS values canonicalization for hashing.
 
-It uses a simple serialization algorithm, generating a consistent string representation of JS values. It is built to use with [Smol xxHash](https://github.com/kossnocorp/smolxxh).
+It uses a simple serialization algorithm, generating a consistent string representation of JS values. It is built to use with [`@js-fns/xxhash`](../xxhash).
 
 It is tiny, efficient, just `185B` and faster than other stable serialization libraries.
 
@@ -35,11 +35,11 @@ const canon = canonize({ foo: "bar", baz: "qux" });
 // => '{foo:"bar";baz:"qux"}'
 ```
 
-You can use it with [Smol xxHash](https://github.com/kossnocorp/smolxxh) to produce consistent hashes for your data:
+You can use it with [`@js-fns/xxhash`](../xxhash) to produce consistent hashes for your data:
 
 ```ts
 import { canonize } from "@js-fns/canon"; // Or "js-fns/canon"
-import { xxh32 } from "smolxxh";
+import { xxh32 } from "@js-fns/xxhash"; // Or "js-fns/xxhash"
 
 const canon = canonize({ foo: "bar", baz: "qux" });
 const hash = xxh32(Buffer.from(canon, "utf8")).toString(16);

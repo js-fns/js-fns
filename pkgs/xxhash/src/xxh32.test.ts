@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { xxh32 } from "./xxh32.js";
+import { xxh32 } from "./xxh32.ts";
 
 describe("xxh32", () => {
   it("reference tests", () => {
@@ -8,7 +8,7 @@ describe("xxh32", () => {
 
     const magicPrime = 0x9e3779b1;
     const size = 101;
-    const data = Buffer.alloc(size);
+    const data = new Uint8Array(size);
     let byteGen = magicPrime;
     for (let i = 0; i < size; i++) {
       data[i] = (byteGen >>> 24) & 0xff;
@@ -21,5 +21,19 @@ describe("xxh32", () => {
     expect(xxh32(data.subarray(0, 14), magicPrime)).toBe(0x4481951d);
     expect(xxh32(data, 0)).toBe(0x1f1aa412);
     expect(xxh32(data, magicPrime)).toBe(0x498ec8e2);
+  });
+
+  it("supports empty and offset byte arrays", () => {
+    const data = new Uint8Array(18);
+    for (let index = 0; index < 16; index++) data[index + 1] = index;
+
+    expect(xxh32(new Uint8Array())).toBe(0x02cc5d05);
+    expect(xxh32(data.subarray(1, 17))).toBe(
+      xxh32(Uint8Array.from({ length: 16 }, (_, index) => index)),
+    );
+  });
+
+  it("supports Buffer", () => {
+    expect(xxh32(Buffer.from("hello world"))).toBe(0xcebb6622);
   });
 });

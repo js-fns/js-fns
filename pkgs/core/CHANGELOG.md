@@ -8,6 +8,12 @@ This change log follows the format documented in [Keep a CHANGELOG].
 [semantic versioning]: http://semver.org/
 [keep a changelog]: http://keepachangelog.com/
 
+## v4.2.0 - 2026-08-14
+
+### Added
+
+- Added `@js-fns/xxhash@0.1.0` as the `js-fns/xxhash` module.
+
 ## v4.1.0 - 2026-07-24
 
 ### Added

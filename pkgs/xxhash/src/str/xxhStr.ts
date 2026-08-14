@@ -1,5 +1,5 @@
 /**
- * Smol xxHash string module types.
+ * xxHash string module types.
  */
 export namespace xxhStr {
   /**

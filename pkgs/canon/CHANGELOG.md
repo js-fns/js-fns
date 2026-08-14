@@ -14,6 +14,10 @@ This change log follows the format documented in [Keep a CHANGELOG].
 
 - Added support for circular references.
 
+### Updated
+
+- Reference `@js-fns/xxhash` in the README instead of `smolxxh`.
+
 ## v0.1.0 - 2026-07-22
 
 Initial version

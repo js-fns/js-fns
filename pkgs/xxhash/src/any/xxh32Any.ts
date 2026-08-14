@@ -1,14 +1,14 @@
-import { canonize } from "smolcanon";
-import { xxh32 } from "../xxh32.js";
+import { canonize } from "#xxhash/canon";
+import { xxh32 } from "../xxh32.ts";
 
 /**
  * Computes the 32-bit xxHash of any JavaScript value.
  *
- * It utilizes `canonize` function from the `smolcanon` package to canonicalize
+ * It utilizes the `canonize` function from `@js-fns/canon` to canonicalize
  * the input value, ensuring that structurally equivalent values produce
  * the same hash.
  *
- * Make sure to install `smolcanon` package as it is not listed as a dependency.
+ * The standalone package uses `@js-fns/canon` as an optional peer dependency.
  *
  * @param input - Value to hash.
  *

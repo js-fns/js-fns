@@ -1,17 +1,4 @@
 {
-  "extends": "./tsconfig.json",
-
-  "compilerOptions": {
-    // Resolve
-    "rootDir": "./src/",
-    // Output
-    "outDir": "./dist/",
-    "sourceMap": true,
-    // Build
-    "incremental": false,
-    // Project references
-    "composite": false
-  },
-  "include": ["src/**/*.ts"],
-  "exclude": ["**/*.tyst.ts", "**/*.test.ts"]
+  "extends": "@js-fns/dev/config/tsconfig.node.dist",
+  "references": [{ "path": "../canon" }]
 }

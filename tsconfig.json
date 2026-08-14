@@ -8,6 +8,8 @@
     { "path": "./pkgs/decimal/_bench.pkg/" },
     { "path": "./pkgs/dev" },
     { "path": "./pkgs/promise/" },
-    { "path": "./pkgs/rpc/" }
+    { "path": "./pkgs/rpc/" },
+    { "path": "./pkgs/xxhash/" },
+    { "path": "./pkgs/xxhash/_bench.pkg/" }
   ]
 }

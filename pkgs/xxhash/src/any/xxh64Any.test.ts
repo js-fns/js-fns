@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { xxh64Str } from "../str/xxh64Str.js";
-import { xxh64Any } from "./xxh64Any.js";
+import { xxh64Str } from "../str/xxh64Str.ts";
+import { xxh64Any } from "./xxh64Any.ts";
 
 describe("xxh64Any", () => {
   it("hashes objects", () => {

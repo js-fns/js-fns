@@ -8,15 +8,16 @@ const xxh64Prime5 = 0x27d4eb2f165667c5n;
 /**
  * Computes the 64-bit xxHash of the given input.
  *
- * It based on a [reference C implementation](https://github.com/easyaspi314/xxhash-clean/blob/86a04ab3f01277049a23f6c9e2c4a6c174ff50c4/xxhash64-ref.c).
+ * It is based on a [reference C implementation](https://github.com/easyaspi314/xxhash-clean/blob/86a04ab3f01277049a23f6c9e2c4a6c174ff50c4/xxhash64-ref.c).
  *
  * @param input - Input to hash.
  * @param seed - The 64-bit seed value.
  *
  * @returns The computed 64-bit hash as an unsigned bigint.
  */
-export function xxh64(input: Buffer, seed: bigint = 0n): bigint {
+export function xxh64(input: Uint8Array, seed: bigint = 0n): bigint {
   const length = input.length;
+  const view = new DataView(input.buffer, input.byteOffset, input.byteLength);
   let remaining = length;
   let offset = 0;
   let hash: bigint;
@@ -29,13 +30,13 @@ export function xxh64(input: Buffer, seed: bigint = 0n): bigint {
     let acc4 = wrap64(seed - xxh64Prime1);
 
     while (remaining >= 32) {
-      acc1 = round64(acc1, input.readBigUInt64LE(offset));
+      acc1 = round64(acc1, view.getBigUint64(offset, true));
       offset += 8;
-      acc2 = round64(acc2, input.readBigUInt64LE(offset));
+      acc2 = round64(acc2, view.getBigUint64(offset, true));
       offset += 8;
-      acc3 = round64(acc3, input.readBigUInt64LE(offset));
+      acc3 = round64(acc3, view.getBigUint64(offset, true));
       offset += 8;
-      acc4 = round64(acc4, input.readBigUInt64LE(offset));
+      acc4 = round64(acc4, view.getBigUint64(offset, true));
       offset += 8;
       remaining -= 32;
     }
@@ -60,7 +61,7 @@ export function xxh64(input: Buffer, seed: bigint = 0n): bigint {
 
   // Process remaining 8-byte chunks
   while (remaining >= 8) {
-    hash ^= round64(0n, input.readBigUInt64LE(offset));
+    hash ^= round64(0n, view.getBigUint64(offset, true));
     hash = rotate64(hash, 27);
     hash = wrap64(hash * xxh64Prime1 + xxh64Prime4);
     offset += 8;
@@ -69,7 +70,7 @@ export function xxh64(input: Buffer, seed: bigint = 0n): bigint {
 
   // Process a remaining 4-byte chunk
   if (remaining >= 4) {
-    hash ^= wrap64(BigInt(input.readUInt32LE(offset)) * xxh64Prime1);
+    hash ^= wrap64(BigInt(view.getUint32(offset, true)) * xxh64Prime1);
     hash = rotate64(hash, 23);
     hash = wrap64(hash * xxh64Prime2 + xxh64Prime3);
     offset += 4;
@@ -100,7 +101,9 @@ export function xxh64(input: Buffer, seed: bigint = 0n): bigint {
  */
 function rotate64(value: bigint, shift: number): bigint {
   const normalizedShift = BigInt(shift % 64);
-  return wrap64((value << normalizedShift) | (value >> (64n - normalizedShift)));
+  return wrap64(
+    (value << normalizedShift) | (value >> (64n - normalizedShift)),
+  );
 }
 
 /**

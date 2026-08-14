@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { xxh32Str } from "../str/xxh32Str.js";
-import { xxh32Any } from "./xxh32Any.js";
+import { xxh32Str } from "../str/xxh32Str.ts";
+import { xxh32Any } from "./xxh32Any.ts";
 
 describe("xxh32Any", () => {
   it("hashes objects", () => {
@@ -34,5 +34,12 @@ describe("xxh32Any", () => {
 
     const fn = (_input: Branded) => {};
     fn(xxh32Any("hello world"));
+  });
+
+  it("supports circular values through @js-fns/canon", () => {
+    const value: { self?: unknown } = {};
+    value.self = value;
+
+    expect(xxh32Any(value)).toBe(xxh32Str("{self:<ref:.>;}"));
   });
 });
