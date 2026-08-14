@@ -8,6 +8,12 @@ This change log follows the format documented in [Keep a CHANGELOG].
 [semantic versioning]: http://semver.org/
 [keep a changelog]: http://keepachangelog.com/
 
+## v0.2.0 - 2026-08-14
+
+### Added
+
+- Added support for circular references.
+
 ## v0.1.0 - 2026-07-22
 
 Initial version

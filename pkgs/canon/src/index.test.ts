@@ -109,6 +109,35 @@ describe("canonize", () => {
     });
   });
 
+  describe("circular references", () => {
+    it("replaces circular references with a ref string", () => {
+      const obj: any = { name: "Alice" };
+      obj.self = obj;
+      expect(canonize(obj)).toBe('{name:"Alice";self:<ref:.>;}');
+    });
+
+    describe("ref paths", () => {
+      const objBob: any = { name: "Bob", friends: [] };
+      const obj: any = { current: { name: "Alice", friends: [] }, all: [] };
+      obj.current.friends.push(objBob);
+      obj.all.push(obj.current, objBob);
+
+      it("replaces uses path to previously seen objects in the ref string", () => {
+        expect(canonize(obj)).toBe(
+          '{all:[0:{friends:[0:{friends:[];name:"Bob";};];name:"Alice";};1:<ref:.all.0.friends.0>;];current:<ref:.all.0>;}',
+        );
+      });
+
+      it("ignores order of object keys", () => {
+        const objBob2: any = { name: "Bob", friends: [] };
+        const obj2: any = { all: [], current: { friends: [], name: "Alice" } };
+        obj2.current.friends.push(objBob2);
+        obj2.all.push(obj2.current, objBob2);
+        expect(canonize(obj)).toBe(canonize(obj2));
+      });
+    });
+  });
+
   describe.skip("instances", () => {
     describe("Date", () => {
       it("serializes Date instances consistently", () => {
