@@ -14,6 +14,10 @@ This change log follows the format documented in [Keep a CHANGELOG].
 
 - Added `@js-fns/xxhash@0.1.0` as the `js-fns/xxhash` module.
 
+### Updated
+
+- Updated `@js-fns/canon` to `0.2.0`.
+
 ## v4.1.0 - 2026-07-24
 
 ### Added
