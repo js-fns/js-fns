@@ -1,0 +1,163 @@
+{
+  "name": "smolxxh",
+  "version": "1.1.0",
+  "description": "Tiny xxHash JS implementation",
+  "keywords": [
+    "hashing",
+    "xxh",
+    "xxh32",
+    "xxh64",
+    "xxhash"
+  ],
+  "homepage": "https://github.com/kossnocorp/smolxxh#readme",
+  "bugs": {
+    "url": "https://github.com/kossnocorp/smolxxh/issues"
+  },
+  "license": "MIT",
+  "author": "Sasha Koss <koss@nocorp.me>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kossnocorp/smolxxh.git"
+  },
+  "type": "module",
+  "main": "index.cjs",
+  "module": "index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./xxh32": "./src/xxh32.ts",
+    "./xxh64": "./src/xxh64.ts",
+    "./str": "./src/str/index.ts",
+    "./str/xxh32Str": "./src/str/xxh32Str.ts",
+    "./str/xxh64Str": "./src/str/xxh64Str.ts",
+    "./any": "./src/any/index.ts",
+    "./any/xxh32Any": "./src/any/xxh32Any.ts",
+    "./any/xxh64Any": "./src/any/xxh64Any.ts",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "require": {
+          "types": "./index.d.cts",
+          "default": "./index.cjs"
+        },
+        "import": {
+          "types": "./index.d.ts",
+          "default": "./index.js"
+        }
+      },
+      "./xxh32": {
+        "require": {
+          "types": "./xxh32.d.cts",
+          "default": "./xxh32.cjs"
+        },
+        "import": {
+          "types": "./xxh32.d.ts",
+          "default": "./xxh32.js"
+        }
+      },
+      "./xxh64": {
+        "require": {
+          "types": "./xxh64.d.cts",
+          "default": "./xxh64.cjs"
+        },
+        "import": {
+          "types": "./xxh64.d.ts",
+          "default": "./xxh64.js"
+        }
+      },
+      "./str": {
+        "require": {
+          "types": "./str/index.d.cts",
+          "default": "./str/index.cjs"
+        },
+        "import": {
+          "types": "./str/index.d.ts",
+          "default": "./str/index.js"
+        }
+      },
+      "./str/xxh32Str": {
+        "require": {
+          "types": "./str/xxh32Str.d.cts",
+          "default": "./str/xxh32Str.cjs"
+        },
+        "import": {
+          "types": "./str/xxh32Str.d.ts",
+          "default": "./str/xxh32Str.js"
+        }
+      },
+      "./str/xxh64Str": {
+        "require": {
+          "types": "./str/xxh64Str.d.cts",
+          "default": "./str/xxh64Str.cjs"
+        },
+        "import": {
+          "types": "./str/xxh64Str.d.ts",
+          "default": "./str/xxh64Str.js"
+        }
+      },
+      "./any": {
+        "require": {
+          "types": "./any/index.d.cts",
+          "default": "./any/index.cjs"
+        },
+        "import": {
+          "types": "./any/index.d.ts",
+          "default": "./any/index.js"
+        }
+      },
+      "./any/xxh32Any": {
+        "require": {
+          "types": "./any/xxh32Any.d.cts",
+          "default": "./any/xxh32Any.cjs"
+        },
+        "import": {
+          "types": "./any/xxh32Any.d.ts",
+          "default": "./any/xxh32Any.js"
+        }
+      },
+      "./any/xxh64Any": {
+        "require": {
+          "types": "./any/xxh64Any.d.cts",
+          "default": "./any/xxh64Any.cjs"
+        },
+        "import": {
+          "types": "./any/xxh64Any.d.ts",
+          "default": "./any/xxh64Any.js"
+        }
+      },
+      "./package.json": "./package.json"
+    }
+  },
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.2",
+    "@babel/cli": "^7.24.1",
+    "@babel/core": "^7.24.4",
+    "@babel/plugin-transform-modules-commonjs": "^7.24.1",
+    "@babel/preset-env": "^7.24.4",
+    "@babel/preset-typescript": "^7.24.1",
+    "@parcel/watcher": "^2.4.1",
+    "@swc/core": "^1.4.13",
+    "@types/node": "^25.4.0",
+    "@types/xxhashjs": "^0.2.4",
+    "babel-plugin-replace-import-extension": "^1.1.4",
+    "benny": "^3.7.1",
+    "bytes-iec": "^3.1.1",
+    "glob": "^10.3.12",
+    "minimatch": "^10.0.1",
+    "oxfmt": "^0.38.0",
+    "oxlint": "^1.53.0",
+    "oxlint-tsgolint": "^0.16.0",
+    "picocolors": "^1.0.0",
+    "smolcanon": "^0.2.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vitest": "^1.4.0",
+    "xxhash-wasm": "^1.1.0",
+    "xxhashjs": "^0.2.2"
+  }
+}

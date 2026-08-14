@@ -1,0 +1,8 @@
+# JS
+node_modules/
+# TS
+.ts/
+# Dist
+/dist/
+# Temp
+/tmp/
